@@ -2,25 +2,38 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
 import './styles.css';
+import { withStore } from '../helpers';
 
 class Login extends Component {
-  componentWillUnmount() {}
+  state = {
+    email: '',
+    password: '',
+  };
 
-  handleEmailChange(e) {}
+  handleChange(event) {
+    const {
+      target: { value, name },
+    } = event;
 
-  handlePasswordChange(e) {}
+    return this.setState({
+      [name]: value,
+    });
+  }
 
-  handleSubmitForm(e) {}
+  handleSubmitForm(event) {
+    event.preventDefault();
+    const { store } = this.props;
+
+    return store.authStore.login(this.state);
+  }
+
   render() {
-    const { values, inProgress } = {
-      values: { email: '', password: '' },
-      inProgress: false,
-    };
+    const { email, password } = this.props;
 
     return (
       <div className="auth-wrapper">
         <div className="auth-inner">
-          <form onSubmit={e => this.handleSubmitForm(e)}>
+          <form onSubmit={event => this.handleSubmitForm(event)}>
             <h3>Sign In</h3>
 
             <div className="form-group">
@@ -29,8 +42,8 @@ class Login extends Component {
                 type="email"
                 className="form-control"
                 placeholder="Enter email"
-                value={values.email}
-                onChange={e => this.handleEmailChange(e)}
+                value={email}
+                onChange={event => this.handleChange(event)}
               />
             </div>
 
@@ -40,16 +53,12 @@ class Login extends Component {
                 type="password"
                 className="form-control"
                 placeholder="Enter password"
-                value={values.password}
-                onChange={e => this.handlePasswordChange(e)}
+                value={password}
+                onChange={event => this.handleChange(event)}
               />
             </div>
 
-            <button
-              type="submit"
-              className="btn btn-primary btn-block"
-              disabled={inProgress}
-            >
+            <button type="submit" className="btn btn-primary btn-block">
               Submit
             </button>
             <p className="forgot-password text-right">
@@ -62,4 +71,4 @@ class Login extends Component {
   }
 }
 
-export default Login;
+export default withStore(Login);

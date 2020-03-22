@@ -2,29 +2,40 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
 import './styles.css';
+import { withStore } from '../helpers';
 
 class Register extends Component {
-  componentWillUnmount() {}
+  state = {
+    firstName: '',
+    lastName: '',
+    email: '',
+    password: '',
+  };
 
-  handleFirstNameChange(e) {}
+  handleChange(event) {
+    const {
+      target: { value, name },
+    } = event;
 
-  handleLastNameChange(e) {}
+    return this.setState({
+      [name]: value,
+    });
+  }
 
-  handleEmailChange(e) {}
+  handleSubmitForm(event) {
+    event.preventDefault();
+    const { store } = this.props;
 
-  handlePasswordChange(e) {}
+    return store.authStore.signUp(this.state);
+  }
 
-  handleSubmitForm(e) {}
   render() {
-    const { values, inProgress } = {
-      values: { email: '', password: '' },
-      inProgress: false,
-    };
+    const { email, firstName, lastName, password } = this.props;
 
     return (
       <div className="auth-wrapper">
         <div className="auth-inner">
-          <form onSubmit={e => this.handleSubmitForm(e)}>
+          <form onSubmit={event => this.handleSubmitForm(event)}>
             <h3>Sign Up</h3>
 
             <div className="form-group">
@@ -33,8 +44,8 @@ class Register extends Component {
                 type="text"
                 className="form-control"
                 placeholder="First name"
-                value={values.firstName}
-                onChange={e => this.handleFirstNameChange(e)}
+                value={firstName}
+                onChange={event => this.handleChange(event)}
               />
             </div>
 
@@ -44,8 +55,8 @@ class Register extends Component {
                 type="text"
                 className="form-control"
                 placeholder="Last name"
-                value={values.lastName}
-                onChange={e => this.handleLastNameChange(e)}
+                value={lastName}
+                onChange={event => this.handleChange(event)}
               />
             </div>
 
@@ -55,8 +66,8 @@ class Register extends Component {
                 type="email"
                 className="form-control"
                 placeholder="Enter email"
-                value={values.email}
-                onChange={e => this.handleEmailChange(e)}
+                value={email}
+                onChange={event => this.handleChange(event)}
               />
             </div>
 
@@ -66,16 +77,12 @@ class Register extends Component {
                 type="password"
                 className="form-control"
                 placeholder="Enter password"
-                value={values.password}
-                onChange={e => this.handlePasswordChange(e)}
+                value={password}
+                onChange={event => this.handleChange(event)}
               />
             </div>
 
-            <button
-              type="submit"
-              className="btn btn-primary btn-block"
-              disabled={inProgress}
-            >
+            <button type="submit" className="btn btn-primary btn-block">
               Sign Up
             </button>
             <p className="forgot-password text-right">
@@ -88,4 +95,4 @@ class Register extends Component {
   }
 }
 
-export default Register;
+export default withStore(Register);

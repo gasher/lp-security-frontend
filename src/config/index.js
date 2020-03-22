@@ -1,6 +1,6 @@
 export default {
   api: {
-    baseURL: null,
+    baseURL: 'localhost:8000',
     timeout: 25000,
   },
 };

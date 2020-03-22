@@ -36,7 +36,7 @@ class AuthStore {
   };
 
   handleAuth = data => {
-    this.setToken(data.auth_token);
+    this.setToken(data.token);
   };
 
   setToken = token => {
