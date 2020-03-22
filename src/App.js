@@ -6,6 +6,9 @@ import config from './config';
 import createStore from './store';
 
 import Screen from './components/routes/Screen';
+import Login from './components/Login';
+import Register from './components/Register';
+import Navbar from './components/Navbar';
 
 const store = createStore(config);
 
@@ -15,8 +18,11 @@ class App extends Component {
       <Provider store={store}>
         <BrowserRouter>
           <div>
+            <Navbar />
             <Switch>
-              <Route path="/" component={Screen} />
+              <Route path="/" component={Screen} exact />
+              <Route path="/login" component={Login} />
+              <Route path="/register" component={Register} />
             </Switch>
           </div>
         </BrowserRouter>
