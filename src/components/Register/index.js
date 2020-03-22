@@ -42,6 +42,7 @@ class Register extends Component {
               <label>First name</label>
               <input
                 type="text"
+                name="firstName"
                 className="form-control"
                 placeholder="First name"
                 value={firstName}
@@ -53,6 +54,7 @@ class Register extends Component {
               <label>Last name</label>
               <input
                 type="text"
+                name="lastName"
                 className="form-control"
                 placeholder="Last name"
                 value={lastName}
@@ -64,6 +66,7 @@ class Register extends Component {
               <label>Email address</label>
               <input
                 type="email"
+                name="email"
                 className="form-control"
                 placeholder="Enter email"
                 value={email}
@@ -75,6 +78,7 @@ class Register extends Component {
               <label>Password</label>
               <input
                 type="password"
+                name="password"
                 className="form-control"
                 placeholder="Enter password"
                 value={password}

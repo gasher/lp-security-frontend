@@ -1,3 +1,4 @@
+import axios from 'axios';
 import { decorate, observable, computed, action, extendObservable } from 'mobx';
 import { fromPromise } from 'mobx-utils';
 import Cookie from 'mobx-cookie';
@@ -11,7 +12,6 @@ class AuthStore {
   }
 
   // Observables
-  userID;
   sessionStatus;
 
   // Computed
@@ -40,10 +40,12 @@ class AuthStore {
   };
 
   setToken = token => {
+    this.store.config.api.headers.common['Authorization'] = `Token ${token}`;
     this.token.set(token, { expires: 7 });
   };
 
   reset = () => {
+    this.store.config.api.headers.common['Authorization'] = null;
     this.setToken(null);
     this.sessionStatus = null;
   };

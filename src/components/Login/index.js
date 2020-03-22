@@ -29,7 +29,7 @@ class Login extends Component {
 
   render() {
     const { email, password } = this.props;
-
+    console.log(this.props.store);
     return (
       <div className="auth-wrapper">
         <div className="auth-inner">
@@ -40,6 +40,7 @@ class Login extends Component {
               <label>Email address</label>
               <input
                 type="email"
+                name="email"
                 className="form-control"
                 placeholder="Enter email"
                 value={email}
@@ -51,6 +52,7 @@ class Login extends Component {
               <label>Password</label>
               <input
                 type="password"
+                name="password"
                 className="form-control"
                 placeholder="Enter password"
                 value={password}
