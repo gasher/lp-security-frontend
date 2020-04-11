@@ -31,8 +31,8 @@ class Login extends Component {
     const { email, password } = this.props;
     console.log(this.props.store);
     return (
-      <div className="auth-wrapper">
-        <div className="auth-inner">
+      <div className="form-wrapper">
+        <div className="form-inner">
           <form onSubmit={event => this.handleSubmitForm(event)}>
             <h3>Sign In</h3>
 

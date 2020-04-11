@@ -33,8 +33,8 @@ class Register extends Component {
     const { email, firstName, lastName, password } = this.props;
 
     return (
-      <div className="auth-wrapper">
-        <div className="auth-inner">
+      <div className="form-wrapper">
+        <div className="form-inner">
           <form onSubmit={event => this.handleSubmitForm(event)}>
             <h3>Sign Up</h3>
 

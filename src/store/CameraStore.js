@@ -11,11 +11,12 @@ class CameraStore {
   sessionStatus;
 
   getAll = async params => {
-    const sessionPromise = this.store.api.cameras.getAll(params);
+    console.log(this.store.api);
+    const sessionPromise = this.store.api.camera.getAll(params);
     this.sessionStatus = fromPromise(sessionPromise);
     const res = await sessionPromise;
 
-    return this.handleAuth(res.data);
+    return this.handleGet(res.data);
   };
 
   handleGet = data => {
@@ -34,10 +35,9 @@ class CameraStore {
 decorate(CameraStore, {
   cameras: observable,
   sessionStatus: observable,
-  signUp: action,
-  login: action,
-  handleAuth: action,
-  setToken: action,
+  getAll: action,
+  handleGet: action,
+  setCameras: action,
   reset: action,
 });
 

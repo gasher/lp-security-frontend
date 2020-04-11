@@ -5,12 +5,14 @@ import { withStore } from '../helpers';
 
 class Navbar extends Component {
   render() {
-    const { store } = this.props;
+    const {
+      store: { authStore },
+    } = this.props;
 
     return (
       <NB bg="dark" variant="dark">
         <NB.Brand href="/">LP Security</NB.Brand>
-        {!store.authStore.isLoggedIn ? (
+        {!authStore.isLoggedIn ? (
           <Nav className="mr-auto">
             <Nav.Link href="/login">Login</Nav.Link>
             <Nav.Link href="/register">Register</Nav.Link>
@@ -18,6 +20,7 @@ class Navbar extends Component {
         ) : (
           <Nav className="mr-auto" inline>
             <Nav.Link href="/">Home</Nav.Link>
+            <Nav.Link href="/cameras">Cameras</Nav.Link>
           </Nav>
         )}
       </NB>
