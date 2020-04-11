@@ -19,7 +19,37 @@ export default () => {
       console.log(params);
       return client.request({
         method: 'get',
-        url: `/cameras`,
+        url: '/cameras',
+      });
+    },
+
+    add(params) {
+      console.log(params);
+      return client.request({
+        method: 'post',
+        url: '/cameras',
+      });
+    },
+
+    update(params) {
+      console.log(params);
+      return client.request({
+        method: 'post',
+        url: `/cameras/${params.id}`,
+        data: {
+          ...params,
+        },
+      });
+    },
+
+    delete(params) {
+      console.log(params);
+      return client.request({
+        method: 'post',
+        url: `/cameras/${params.id}`,
+        data: {
+          ...params,
+        },
       });
     },
   };

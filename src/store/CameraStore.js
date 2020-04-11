@@ -11,7 +11,6 @@ class CameraStore {
   sessionStatus;
 
   getAll = async params => {
-    console.log(this.store.api);
     const sessionPromise = this.store.api.camera.getAll(params);
     this.sessionStatus = fromPromise(sessionPromise);
     const res = await sessionPromise;
@@ -23,12 +22,24 @@ class CameraStore {
     return this.setCameras(JSON.parse(data));
   };
 
+  handleAdd = data => {
+    return this.setCameras(this.cameras.push(JSON.parse(data)));
+  };
+
   setCameras = cameras => {
     return this.cameras.set(cameras);
   };
 
   reset = () => {
     this.cameras = [];
+  };
+
+  add = async params => {
+    const sessionPromise = this.store.api.camera.add(params);
+    this.sessionStatus = fromPromise(sessionPromise);
+    const res = await sessionPromise;
+
+    return this.handleAdd(res.data);
   };
 }
 

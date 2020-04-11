@@ -9,6 +9,7 @@ class CameraList extends Component {
   state = {
     cameras: [
       {
+        id: 1,
         title: 'Camera1',
         latitude: 46.754122,
         longitude: 23.561324,
@@ -16,6 +17,7 @@ class CameraList extends Component {
         description: 'This is a random description',
       },
       {
+        id: 2,
         title: 'Camera2',
         latitude: -34.397,
         longitude: 150.644,
@@ -23,6 +25,7 @@ class CameraList extends Component {
         description: 'This is a random description',
       },
       {
+        id: 3,
         title: 'Camera3',
         latitude: -34.397,
         longitude: 150.644,
@@ -30,6 +33,7 @@ class CameraList extends Component {
         description: 'This is a random description',
       },
       {
+        id: 4,
         title: 'Camera4',
         latitude: -34.397,
         longitude: 150.644,
@@ -51,8 +55,8 @@ class CameraList extends Component {
     return (
       <Container>
         <Row>
-          {this.state.cameras.map((camera, index) => (
-            <Camera key={index} {...camera} />
+          {this.state.cameras.map(camera => (
+            <Camera key={camera.id} {...camera} />
           ))}
         </Row>
       </Container>
