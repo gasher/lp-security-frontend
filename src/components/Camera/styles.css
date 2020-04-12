@@ -1,0 +1,11 @@
+.camera {
+  margin: 5px;
+}
+
+.status-active {
+  color: green;
+}
+
+.status-inactive {
+  color: red;
+}
