@@ -4,15 +4,19 @@ import { Col, Card, Modal, Button } from 'react-bootstrap';
 import './styles.css';
 import CameraForm from '../CameraForm';
 import Map from '../Map';
+import VideoFeed from '../VideoFeed';
 
 const Camera = ({ id, title, description, latitude, longitude, status }) => {
   const [showMap, setShowMap] = useState(false);
   const [showEdit, setShowEdit] = useState(false);
+  const [showFeed, setShowFeed] = useState(false);
 
   const handleCloseMap = () => setShowMap(false);
   const handleShowMap = () => setShowMap(true);
   const handleCloseEdit = () => setShowEdit(false);
   const handleShowEdit = () => setShowEdit(true);
+  const handleCloseFeed = () => setShowFeed(false);
+  const handleShowFeed = () => setShowFeed(true);
 
   return (
     <Col xs="4">
@@ -23,10 +27,13 @@ const Camera = ({ id, title, description, latitude, longitude, status }) => {
           <Card.Text>{description}</Card.Text>
           <Button variant="secondary" onClick={handleShowMap}>
             Show map
-          </Button>
+          </Button>{' '}
           <Button variant="primary" onClick={handleShowEdit}>
             Manage camera
-          </Button>
+          </Button>{' '}
+          <Button variant="info" onClick={handleShowFeed}>
+            Show video feed
+          </Button>{' '}
         </Card.Body>
       </Card>
       <Modal show={showMap} onHide={handleCloseMap}>
@@ -45,6 +52,17 @@ const Camera = ({ id, title, description, latitude, longitude, status }) => {
 
         <Modal.Body>
           <CameraForm
+            {...{ id, title, description, latitude, longitude, status }}
+          />
+        </Modal.Body>
+      </Modal>
+      <Modal show={showFeed} onHide={handleCloseFeed}>
+        <Modal.Header closeButton>
+          <Modal.Title>{title}</Modal.Title>
+        </Modal.Header>
+
+        <Modal.Body>
+          <VideoFeed
             {...{ id, title, description, latitude, longitude, status }}
           />
         </Modal.Body>

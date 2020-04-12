@@ -15,6 +15,7 @@ class CameraList extends Component {
         longitude: 23.561324,
         status: 'active',
         description: 'This is a random description',
+        ip: 'http://admin:admin@192.168.100.207:8080/video',
       },
       {
         id: 2,
@@ -23,6 +24,7 @@ class CameraList extends Component {
         longitude: 150.644,
         status: 'inactive',
         description: 'This is a random description',
+        ip: 'http://admin:admin@192.168.100.207:8080/video',
       },
       {
         id: 3,
@@ -31,6 +33,7 @@ class CameraList extends Component {
         longitude: 150.644,
         status: 'inactive',
         description: 'This is a random description',
+        ip: 'http://admin:admin@192.168.100.207:8080/video',
       },
       {
         id: 4,
@@ -39,6 +42,7 @@ class CameraList extends Component {
         longitude: 150.644,
         status: 'active',
         description: 'This is a random description',
+        ip: 'http://admin:admin@192.168.100.207:8080/video',
       },
     ],
   };
