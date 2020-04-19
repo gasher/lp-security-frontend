@@ -35,7 +35,7 @@ export default () => {
       console.log(params);
       return client.request({
         method: 'post',
-        url: `/cameras/${params.id}`,
+        url: `/cameras/${params.id}/`,
         data: {
           ...params,
         },
@@ -46,7 +46,7 @@ export default () => {
       console.log(params);
       return client.request({
         method: 'post',
-        url: `/cameras/${params.id}`,
+        url: `/cameras/${params.id}/`,
         data: {
           ...params,
         },
@@ -58,9 +58,9 @@ export default () => {
     login(params) {
       return client.request({
         method: 'post',
-        url: 'api-token-auth',
+        url: 'api-token-auth/',
         data: {
-          email: params.email,
+          username: params.username,
           password: params.password,
         },
       });

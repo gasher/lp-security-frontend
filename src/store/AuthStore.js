@@ -40,6 +40,7 @@ class AuthStore {
   };
 
   setToken = token => {
+    console.log(this.store.config.api);
     this.store.config.api.headers.common['Authorization'] = `Token ${token}`;
     this.token.set(token, { expires: 7 });
   };

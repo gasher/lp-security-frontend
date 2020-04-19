@@ -1,6 +1,11 @@
 export default {
   api: {
-    baseURL: 'http://localhost:8000',
+    baseURL: 'https://blooming-forest-52131.herokuapp.com/',
     timeout: 25000,
+    headers: {
+      common: {
+        Authorization: null,
+      },
+    },
   },
 };

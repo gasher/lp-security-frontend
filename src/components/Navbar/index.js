@@ -18,7 +18,7 @@ class Navbar extends Component {
             <Nav.Link href="/register">Register</Nav.Link>
           </Nav>
         ) : (
-          <Nav className="mr-auto" inline>
+          <Nav className="mr-auto">
             <Nav.Link href="/">Home</Nav.Link>
             <Nav.Link href="/cameras">Cameras</Nav.Link>
           </Nav>
