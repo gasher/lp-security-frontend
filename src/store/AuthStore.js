@@ -1,4 +1,3 @@
-import axios from 'axios';
 import { decorate, observable, computed, action, extendObservable } from 'mobx';
 import { fromPromise } from 'mobx-utils';
 import Cookie from 'mobx-cookie';
@@ -32,7 +31,8 @@ class AuthStore {
     const sessionPromise = this.store.api.user.login(params);
     this.sessionStatus = fromPromise(sessionPromise);
     const res = await sessionPromise;
-    this.handleAuth(res.data);
+
+    return this.handleAuth(res.data);
   };
 
   handleAuth = data => {
@@ -40,15 +40,16 @@ class AuthStore {
   };
 
   setToken = token => {
-    console.log(this.store.config.api);
     this.store.config.api.headers.common['Authorization'] = `Token ${token}`;
-    this.token.set(token, { expires: 7 });
+
+    return this.token.set(token, { expires: 7 });
   };
 
   reset = () => {
     this.store.config.api.headers.common['Authorization'] = null;
-    this.setToken(null);
     this.sessionStatus = null;
+
+    return this.token.remove();
   };
 }
 

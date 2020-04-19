@@ -41,7 +41,7 @@ class Login extends Component {
 
   render() {
     const { username, password, error } = this.state;
-    console.log(this.props.store);
+
     return (
       <div>
         {error && <Alert variant="danger">Login failed!</Alert>}

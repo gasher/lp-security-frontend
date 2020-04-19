@@ -4,6 +4,13 @@ import { Navbar as NB, Nav } from 'react-bootstrap';
 import { withStore } from '../helpers';
 
 class Navbar extends Component {
+  handleSignOut() {
+    const {
+      store: { authStore },
+    } = this.props;
+
+    return authStore.reset();
+  }
   render() {
     const {
       store: { authStore },
@@ -21,6 +28,7 @@ class Navbar extends Component {
           <Nav className="mr-auto">
             <Nav.Link href="/">Home</Nav.Link>
             <Nav.Link href="/cameras">Cameras</Nav.Link>
+            <Nav.Link onClick={() => this.handleSignOut()}>Sign out</Nav.Link>
           </Nav>
         )}
       </NB>
