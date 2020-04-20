@@ -19,7 +19,10 @@ export default () => {
       console.log(params);
       return client.request({
         method: 'get',
-        url: '/cameras',
+        url: '/cameras/',
+        headers: {
+          Authorization: `Token ${localStorage.token}`,
+        },
       });
     },
 
@@ -27,7 +30,10 @@ export default () => {
       console.log(params);
       return client.request({
         method: 'post',
-        url: '/cameras',
+        url: '/cameras/',
+        headers: {
+          Authorization: `Token ${localStorage.token}`,
+        },
       });
     },
 
@@ -36,6 +42,9 @@ export default () => {
       return client.request({
         method: 'post',
         url: `/cameras/${params.id}/`,
+        headers: {
+          Authorization: `Token ${localStorage.token}`,
+        },
         data: {
           ...params,
         },
@@ -47,6 +56,9 @@ export default () => {
       return client.request({
         method: 'post',
         url: `/cameras/${params.id}/`,
+        headers: {
+          Authorization: `Token ${localStorage.token}`,
+        },
         data: {
           ...params,
         },
@@ -74,5 +86,6 @@ export default () => {
     getData,
     camera,
     user,
+    client,
   };
 };

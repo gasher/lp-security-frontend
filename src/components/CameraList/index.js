@@ -47,12 +47,13 @@ class CameraList extends Component {
     ],
   };
 
-  componentDidMount() {
+  async componentDidMount() {
     const {
       store: { cameraStore },
     } = this.props;
-    console.log(cameraStore);
-    // cameraStore.getAll();
+
+    const cameras = await cameraStore.getAll();
+    console.log(cameras);
   }
 
   render() {

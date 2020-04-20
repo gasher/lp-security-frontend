@@ -4,7 +4,7 @@ export default {
     timeout: 25000,
     headers: {
       common: {
-        Authorization: null,
+        'Content-Type': 'application/json',
       },
     },
   },

@@ -19,7 +19,7 @@ class CameraStore {
   };
 
   handleGet = data => {
-    return this.setCameras(JSON.parse(data));
+    return this.setCameras(data.results);
   };
 
   handleAdd = data => {
@@ -27,7 +27,7 @@ class CameraStore {
   };
 
   setCameras = cameras => {
-    return this.cameras.set(cameras);
+    return (this.cameras = cameras);
   };
 
   reset = () => {

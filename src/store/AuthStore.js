@@ -40,13 +40,13 @@ class AuthStore {
   };
 
   setToken = token => {
-    this.store.config.api.headers.common['Authorization'] = `Token ${token}`;
+    localStorage.setItem('token', token);
 
     return this.token.set(token, { expires: 7 });
   };
 
   reset = () => {
-    this.store.config.api.headers.common['Authorization'] = null;
+    localStorage.removeItem('token');
     this.sessionStatus = null;
 
     return this.token.remove();
