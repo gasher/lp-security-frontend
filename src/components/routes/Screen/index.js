@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Jumbotron, Button } from 'react-bootstrap';
-import { withStore } from '../../common/Helpers';
 
 import './styles';
 
@@ -21,4 +20,4 @@ class Screen extends Component {
   }
 }
 
-export default withStore(Screen);
+export default Screen;

@@ -64,7 +64,15 @@ const Camera = ({
 
         <Modal.Body>
           <CameraForm
-            {...{ id, name, description, latitude, longitude, status }}
+            {...{
+              id,
+              name,
+              description,
+              latitude,
+              longitude,
+              status,
+              ip_address,
+            }}
           />
         </Modal.Body>
       </Modal>

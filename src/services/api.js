@@ -34,6 +34,9 @@ export default () => {
         headers: {
           Authorization: `Token ${localStorage.token}`,
         },
+        data: {
+          ...params,
+        },
       });
     },
 

@@ -3,8 +3,6 @@ import { Map, GoogleApiWrapper, Marker } from 'google-maps-react';
 
 import './styles.css';
 
-import LoadingIndicator from '../common/LoadingIndicator';
-
 export class MapContainer extends Component {
   render() {
     const { latitude, longitude } = this.props;
@@ -32,6 +30,5 @@ export class MapContainer extends Component {
 }
 
 export default GoogleApiWrapper({
-  LoadingContainer: LoadingIndicator,
   apiKey: 'AIzaSyDOdAILlldFqsxbM0YEwgoc-855gvo4RAI',
 })(MapContainer);

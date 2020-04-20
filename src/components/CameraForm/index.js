@@ -10,7 +10,7 @@ class CameraForm extends Component {
     description: this.props.description || '',
     longitude: this.props.longitude || '',
     latitude: this.props.latitude || '',
-    status: this.props.status || '',
+    status: this.props.status || 'AC',
     ip_address: this.props.ip_address || '',
   };
 
@@ -24,22 +24,31 @@ class CameraForm extends Component {
     });
   }
 
-  handleSubmitForm(event) {
+  async handleSubmitForm(event) {
     event.preventDefault();
     const {
       store: { cameraStore },
     } = this.props;
-    console.log(this.state);
 
     if (this.state.id) {
       return cameraStore.update(this.state);
     }
 
-    return cameraStore.add(this.state);
+    await cameraStore.add(this.state);
+
+    return this.props.history.push('/cameras');
   }
 
   render() {
-    const { id, name, description, latitude, longitude, status } = this.state;
+    const {
+      id,
+      name,
+      description,
+      latitude,
+      longitude,
+      status,
+      ip_address,
+    } = this.state;
 
     return (
       <div className="form-wrapper">
@@ -71,13 +80,12 @@ class CameraForm extends Component {
 
             <div className="form-group">
               <label>Status</label>
-              <input
-                type="text"
-                name="status"
-                className="form-control"
-                onChange={event => this.handleChange(event)}
-                value={status}
-              />
+              <select name="status" className="form-control">
+                <option value="AC" selected>
+                  Active
+                </option>
+                <option value="IN">Inactive</option>
+              </select>
             </div>
 
             <div className="form-group">
@@ -99,6 +107,17 @@ class CameraForm extends Component {
                 className="form-control"
                 onChange={event => this.handleChange(event)}
                 value={longitude}
+              />
+            </div>
+
+            <div className="form-group">
+              <label>Ip Address</label>
+              <input
+                type="text"
+                name="ip_address"
+                className="form-control"
+                onChange={event => this.handleChange(event)}
+                value={ip_address}
               />
             </div>
 

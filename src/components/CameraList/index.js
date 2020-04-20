@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Container, Row } from 'react-bootstrap';
+import { Container, Row, Button } from 'react-bootstrap';
 
 import './styles.css';
 import Camera from '../Camera';
@@ -24,6 +24,7 @@ class CameraList extends Component {
   render() {
     return (
       <Container>
+        <Button href="/camera-form">Add camera</Button>
         <Row>
           {this.state.cameras.map(camera => (
             <Camera key={camera.id} {...camera} />
