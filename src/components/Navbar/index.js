@@ -1,15 +1,18 @@
 import React, { Component } from 'react';
+import { withRouter } from 'react-router';
 import { Navbar as NB, Nav } from 'react-bootstrap';
 
 import { withStore } from '../helpers';
 
 class Navbar extends Component {
-  handleSignOut() {
+  async handleSignOut() {
     const {
       store: { authStore },
     } = this.props;
 
-    return authStore.reset();
+    await authStore.reset();
+
+    return this.props.history.push('/login');
   }
   render() {
     const {
@@ -36,4 +39,4 @@ class Navbar extends Component {
   }
 }
 
-export default withStore(Navbar);
+export default withRouter(withStore(Navbar));
