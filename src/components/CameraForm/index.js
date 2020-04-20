@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 
 import './styles.css';
 import { withStore } from '../helpers';
+import { djangoErrorResponseParser } from '../helpers';
 
 class CameraForm extends Component {
   state = {
@@ -12,6 +13,7 @@ class CameraForm extends Component {
     latitude: this.props.latitude || '',
     status: this.props.status || 'AC',
     ip_address: this.props.ip_address || '',
+    error: {},
   };
 
   handleChange(event) {
@@ -26,17 +28,25 @@ class CameraForm extends Component {
 
   async handleSubmitForm(event) {
     event.preventDefault();
-    const {
-      store: { cameraStore },
-    } = this.props;
 
-    if (this.state.id) {
-      return cameraStore.update(this.state);
+    try {
+      const {
+        store: { cameraStore },
+      } = this.props;
+
+      if (this.state.id) {
+        return cameraStore.update(this.state);
+      }
+
+      await cameraStore.add(this.state);
+
+      return this.props.history.push('/cameras');
+    } catch (error) {
+      console.log(djangoErrorResponseParser);
+      return this.setState({
+        error: djangoErrorResponseParser(error),
+      });
     }
-
-    await cameraStore.add(this.state);
-
-    return this.props.history.push('/cameras');
   }
 
   render() {
@@ -48,6 +58,7 @@ class CameraForm extends Component {
       longitude,
       status,
       ip_address,
+      error,
     } = this.state;
 
     return (
@@ -65,6 +76,7 @@ class CameraForm extends Component {
                 onChange={event => this.handleChange(event)}
                 value={name}
               />
+              {error.name && <label className="error">{error.name}</label>}
             </div>
 
             <div className="form-group">
@@ -76,16 +88,25 @@ class CameraForm extends Component {
                 onChange={event => this.handleChange(event)}
                 value={description}
               />
+              {error.description && (
+                <label className="error">{error.description}</label>
+              )}
             </div>
 
             <div className="form-group">
               <label>Status</label>
-              <select name="status" className="form-control">
+              <select
+                name="status"
+                className="form-control"
+                onChange={event => this.handleChange(event)}
+                value={status}
+              >
                 <option value="AC" selected>
                   Active
                 </option>
                 <option value="IN">Inactive</option>
               </select>
+              {error.status && <label className="error">{error.status}</label>}
             </div>
 
             <div className="form-group">
@@ -97,6 +118,9 @@ class CameraForm extends Component {
                 onChange={event => this.handleChange(event)}
                 value={latitude}
               />
+              {error.latitude && (
+                <label className="error">{error.latitude}</label>
+              )}
             </div>
 
             <div className="form-group">
@@ -108,6 +132,9 @@ class CameraForm extends Component {
                 onChange={event => this.handleChange(event)}
                 value={longitude}
               />
+              {error.longitude && (
+                <label className="error">{error.longitude}</label>
+              )}
             </div>
 
             <div className="form-group">
@@ -119,6 +146,9 @@ class CameraForm extends Component {
                 onChange={event => this.handleChange(event)}
                 value={ip_address}
               />
+              {error.ip_address && (
+                <label className="error">{error.ip_address}</label>
+              )}
             </div>
 
             <button type="submit" className="btn btn-primary btn-block">

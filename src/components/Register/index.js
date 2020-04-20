@@ -48,7 +48,7 @@ class Register extends Component {
       username,
       error,
     } = this.state;
-    console.log(this.state);
+
     return (
       <div className="form-wrapper">
         <div className="form-inner">
