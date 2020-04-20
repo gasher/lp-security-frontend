@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { Alert } from 'react-bootstrap';
 
 import './styles.css';
-import { withStore } from '../helpers';
+import { withStore, djangoErrorResponseParser } from '../helpers';
 
 class Login extends Component {
   state = {
@@ -32,7 +32,7 @@ class Login extends Component {
       return this.props.history.push('/');
     } catch (error) {
       this.setState({
-        error: true,
+        error: djangoErrorResponseParser(error),
       });
 
       return setTimeout(() => this.setState({ error: false }), 1000);
@@ -44,7 +44,9 @@ class Login extends Component {
 
     return (
       <div>
-        {error && <Alert variant="danger">Login failed!</Alert>}
+        {error.non_field_errors && (
+          <Alert variant="danger">{error.non_field_errors}</Alert>
+        )}
         <div className="form-wrapper">
           <div className="form-inner">
             <form onSubmit={event => this.handleSubmitForm(event)}>
