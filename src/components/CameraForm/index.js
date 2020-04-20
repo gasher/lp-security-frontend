@@ -6,11 +6,12 @@ import { withStore } from '../helpers';
 class CameraForm extends Component {
   state = {
     id: this.props.id || null,
-    title: this.props.title || '',
+    name: this.props.name || '',
     description: this.props.description || '',
     longitude: this.props.longitude || '',
     latitude: this.props.latitude || '',
     status: this.props.status || '',
+    ip_address: this.props.ip_address || '',
   };
 
   handleChange(event) {
@@ -28,6 +29,7 @@ class CameraForm extends Component {
     const {
       store: { cameraStore },
     } = this.props;
+    console.log(this.state);
 
     if (this.state.id) {
       return cameraStore.update(this.state);
@@ -37,7 +39,7 @@ class CameraForm extends Component {
   }
 
   render() {
-    const { id, title, description, latitude, longitude, status } = this.state;
+    const { id, name, description, latitude, longitude, status } = this.state;
 
     return (
       <div className="form-wrapper">
@@ -46,13 +48,13 @@ class CameraForm extends Component {
             <h3>{!id ? 'Add new camera' : 'Edit camera'}</h3>
 
             <div className="form-group">
-              <label>Title</label>
+              <label>Name</label>
               <input
                 type="text"
-                name="title"
+                name="name"
                 className="form-control"
                 onChange={event => this.handleChange(event)}
-                value={title}
+                value={name}
               />
             </div>
 

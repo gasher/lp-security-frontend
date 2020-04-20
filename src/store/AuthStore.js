@@ -23,7 +23,6 @@ class AuthStore {
     const sessionPromise = this.store.api.user.signup(params);
     this.sessionStatus = fromPromise(sessionPromise);
     const res = await sessionPromise;
-
     // Do stuff
   };
 

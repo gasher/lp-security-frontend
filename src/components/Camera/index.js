@@ -6,7 +6,15 @@ import CameraForm from '../CameraForm';
 import Map from '../Map';
 import VideoFeed from '../VideoFeed';
 
-const Camera = ({ id, title, description, latitude, longitude, status }) => {
+const Camera = ({
+  id,
+  name,
+  description,
+  latitude,
+  longitude,
+  status,
+  ip_address,
+}) => {
   const [showMap, setShowMap] = useState(false);
   const [showEdit, setShowEdit] = useState(false);
   const [showFeed, setShowFeed] = useState(false);
@@ -18,12 +26,16 @@ const Camera = ({ id, title, description, latitude, longitude, status }) => {
   const handleCloseFeed = () => setShowFeed(false);
   const handleShowFeed = () => setShowFeed(true);
 
+  const statusLabel = status === 'AC' ? 'active' : 'inactive';
+
   return (
     <Col xs="4">
       <Card className="text-center camera">
         <Card.Body>
-          <Card.Title>{title}</Card.Title>
-          <Card.Subtitle className={`status-${status}`}>{status}</Card.Subtitle>
+          <Card.Title>{name}</Card.Title>
+          <Card.Subtitle className={`status-${statusLabel}`}>
+            {statusLabel}
+          </Card.Subtitle>
           <Card.Text>{description}</Card.Text>
           <Button variant="secondary" onClick={handleShowMap}>
             Show map
@@ -38,7 +50,7 @@ const Camera = ({ id, title, description, latitude, longitude, status }) => {
       </Card>
       <Modal show={showMap} onHide={handleCloseMap}>
         <Modal.Header closeButton>
-          <Modal.Title>{title}</Modal.Title>
+          <Modal.Title>{name}</Modal.Title>
         </Modal.Header>
 
         <Modal.Body>
@@ -47,24 +59,22 @@ const Camera = ({ id, title, description, latitude, longitude, status }) => {
       </Modal>
       <Modal show={showEdit} onHide={handleCloseEdit}>
         <Modal.Header closeButton>
-          <Modal.Title>{title}</Modal.Title>
+          <Modal.Title>{name}</Modal.Title>
         </Modal.Header>
 
         <Modal.Body>
           <CameraForm
-            {...{ id, title, description, latitude, longitude, status }}
+            {...{ id, name, description, latitude, longitude, status }}
           />
         </Modal.Body>
       </Modal>
       <Modal show={showFeed} onHide={handleCloseFeed}>
         <Modal.Header closeButton>
-          <Modal.Title>{title}</Modal.Title>
+          <Modal.Title>{name}</Modal.Title>
         </Modal.Header>
 
         <Modal.Body>
-          <VideoFeed
-            {...{ id, title, description, latitude, longitude, status }}
-          />
+          <VideoFeed {...{ ip_address }} />
         </Modal.Body>
       </Modal>
     </Col>

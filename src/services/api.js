@@ -40,7 +40,7 @@ export default () => {
     update(params) {
       console.log(params);
       return client.request({
-        method: 'post',
+        method: 'put',
         url: `/cameras/${params.id}/`,
         headers: {
           Authorization: `Token ${localStorage.token}`,
@@ -70,7 +70,7 @@ export default () => {
     login(params) {
       return client.request({
         method: 'post',
-        url: 'api-token-auth/',
+        url: '/api-token-auth/',
         data: {
           username: params.username,
           password: params.password,
@@ -78,7 +78,17 @@ export default () => {
       });
     },
     signup(params) {
-      // TODO sign in
+      return client.request({
+        method: 'post',
+        url: '/users/',
+        data: {
+          email: params.email,
+          username: params.username,
+          password: params.password,
+          first_name: params.firstName,
+          last_name: params.lastName,
+        },
+      });
     },
   };
 

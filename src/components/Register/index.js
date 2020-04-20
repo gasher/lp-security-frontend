@@ -9,7 +9,9 @@ class Register extends Component {
     firstName: '',
     lastName: '',
     email: '',
+    username: '',
     password: '',
+    error: {},
   };
 
   handleChange(event) {
@@ -22,16 +24,31 @@ class Register extends Component {
     });
   }
 
-  handleSubmitForm(event) {
+  async handleSubmitForm(event) {
     event.preventDefault();
     const { store } = this.props;
 
-    return store.authStore.signUp(this.state);
+    try {
+      await store.authStore.signUp(this.state);
+
+      return this.props.history.push('/');
+    } catch (error) {
+      return this.setState({
+        error: error.response.data,
+      });
+    }
   }
 
   render() {
-    const { email, firstName, lastName, password } = this.props;
-
+    const {
+      email,
+      firstName,
+      lastName,
+      password,
+      username,
+      error,
+    } = this.state;
+    console.log(this.state);
     return (
       <div className="form-wrapper">
         <div className="form-inner">
@@ -48,6 +65,7 @@ class Register extends Component {
                 value={firstName}
                 onChange={event => this.handleChange(event)}
               />
+              {error.first_name && <label>{error.first_name[0]}</label>}
             </div>
 
             <div className="form-group">
@@ -60,6 +78,7 @@ class Register extends Component {
                 value={lastName}
                 onChange={event => this.handleChange(event)}
               />
+              {error.last_name && <label>{error.last_name[0]}</label>}
             </div>
 
             <div className="form-group">
@@ -72,6 +91,20 @@ class Register extends Component {
                 value={email}
                 onChange={event => this.handleChange(event)}
               />
+              {error.email && <label>{error.email[0]}</label>}
+            </div>
+
+            <div className="form-group">
+              <label>Username</label>
+              <input
+                type="text"
+                name="username"
+                className="form-control"
+                placeholder="Enter username"
+                value={username}
+                onChange={event => this.handleChange(event)}
+              />
+              {error.username && <label>{error.username[0]}</label>}
             </div>
 
             <div className="form-group">
@@ -84,6 +117,7 @@ class Register extends Component {
                 value={password}
                 onChange={event => this.handleChange(event)}
               />
+              {error.password && <label>{error.password[0]}</label>}
             </div>
 
             <button type="submit" className="btn btn-primary btn-block">
