@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Alert } from 'react-bootstrap';
+import { Form, Alert, Button } from 'react-bootstrap';
 
 import './styles.css';
 import { withStore } from '../helpers';
@@ -69,99 +69,107 @@ class CameraForm extends Component {
         )}
         <div className="form-wrapper">
           <div className="form-inner">
-            <form onSubmit={event => this.handleSubmitForm(event)}>
+            <Form onSubmit={event => this.handleSubmitForm(event)}>
               <h3>{!id ? 'Add new camera' : 'Edit camera'}</h3>
-
-              <div className="form-group">
-                <label>Name</label>
-                <input
+              <Form.Group>
+                <Form.Label>Name</Form.Label>
+                <Form.Control
                   type="text"
                   name="name"
-                  className="form-control"
                   onChange={event => this.handleChange(event)}
                   value={name}
+                  required
                 />
-                {error.name && <label className="error">{error.name}</label>}
-              </div>
-
-              <div className="form-group">
-                <label>Description</label>
-                <input
+                {error.name && (
+                  <Form.Text className="text-muted error">
+                    {error.name}
+                  </Form.Text>
+                )}
+              </Form.Group>
+              <Form.Group>
+                <Form.Label>Description</Form.Label>
+                <Form.Control
                   type="text"
                   name="description"
-                  className="form-control"
                   onChange={event => this.handleChange(event)}
                   value={description}
+                  required
                 />
                 {error.description && (
-                  <label className="error">{error.description}</label>
+                  <Form.Text className="text-muted error">
+                    {error.description}
+                  </Form.Text>
                 )}
-              </div>
-
-              <div className="form-group">
-                <label>Status</label>
-                <select
+              </Form.Group>
+              <Form.Group>
+                <Form.Label>Status</Form.Label>
+                <Form.Control
+                  as="select"
                   name="status"
-                  className="form-control"
                   onChange={event => this.handleChange(event)}
                   value={status}
+                  required
                 >
                   <option value="AC" selected>
                     Active
                   </option>
                   <option value="IN">Inactive</option>
-                </select>
+                </Form.Control>
                 {error.status && (
-                  <label className="error">{error.status}</label>
+                  <Form.Text className="text-muted error">
+                    {error.status}
+                  </Form.Text>
                 )}
-              </div>
-
-              <div className="form-group">
-                <label>Latitude</label>
-                <input
+              </Form.Group>
+              <Form.Group>
+                <Form.Label>Latitude</Form.Label>
+                <Form.Control
                   type="text"
                   name="latitude"
-                  className="form-control"
                   onChange={event => this.handleChange(event)}
                   value={latitude}
+                  required
                 />
                 {error.latitude && (
-                  <label className="error">{error.latitude}</label>
+                  <Form.Text className="text-muted error">
+                    {error.latitude}
+                  </Form.Text>
                 )}
-              </div>
-
-              <div className="form-group">
-                <label>Longitude</label>
-                <input
+              </Form.Group>
+              <Form.Group>
+                <Form.Label>Longitude</Form.Label>
+                <Form.Control
                   type="text"
                   name="longitude"
-                  className="form-control"
                   onChange={event => this.handleChange(event)}
                   value={longitude}
+                  required
                 />
                 {error.longitude && (
-                  <label className="error">{error.longitude}</label>
+                  <Form.Text className="text-muted error">
+                    {error.longitude}
+                  </Form.Text>
                 )}
-              </div>
-
-              <div className="form-group">
-                <label>Ip Address</label>
-                <input
+              </Form.Group>
+              <Form.Group>
+                <Form.Label>Ip Address</Form.Label>
+                <Form.Control
                   type="text"
                   name="ip_address"
-                  className="form-control"
                   onChange={event => this.handleChange(event)}
                   value={ip_address}
+                  required
                 />
                 {error.ip_address && (
-                  <label className="error">{error.ip_address}</label>
+                  <Form.Text className="text-muted error">
+                    {error.ip_address}
+                  </Form.Text>
                 )}
-              </div>
-
-              <button type="submit" className="btn btn-primary btn-block">
+              </Form.Group>
+              <Button variant="primary" type="submit">
                 Submit
-              </button>
-            </form>
+              </Button>
+            </Form>
           </div>
         </div>
       </div>

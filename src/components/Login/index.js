@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { Alert } from 'react-bootstrap';
+import { Alert, Form, Button } from 'react-bootstrap';
 
 import './styles.css';
 import { withStore, djangoErrorResponseParser } from '../helpers';
@@ -49,40 +49,47 @@ class Login extends Component {
         )}
         <div className="form-wrapper">
           <div className="form-inner">
-            <form onSubmit={event => this.handleSubmitForm(event)}>
-              <h3>Sign In</h3>
-
-              <div className="form-group">
-                <label>Username</label>
-                <input
+            <h3>Sign In</h3>
+            <Form onSubmit={event => this.handleSubmitForm(event)}>
+              <Form.Group>
+                <Form.Label>Username</Form.Label>
+                <Form.Control
                   type="text"
                   name="username"
-                  className="form-control"
                   placeholder="Enter username"
-                  value={username}
                   onChange={event => this.handleChange(event)}
+                  value={username}
+                  required
                 />
-              </div>
-
-              <div className="form-group">
-                <label>Password</label>
-                <input
+                {error.username && (
+                  <Form.Text className="text-muted error">
+                    {error.username}
+                  </Form.Text>
+                )}
+              </Form.Group>
+              <Form.Group>
+                <Form.Label>Password</Form.Label>
+                <Form.Control
                   type="password"
                   name="password"
-                  className="form-control"
                   placeholder="Enter password"
-                  value={password}
                   onChange={event => this.handleChange(event)}
+                  value={password}
+                  required
                 />
-              </div>
-
-              <button type="submit" className="btn btn-primary btn-block">
+                {error.password && (
+                  <Form.Text className="text-muted error">
+                    {error.password}
+                  </Form.Text>
+                )}
+              </Form.Group>
+              <Button variant="primary" type="submit" block>
                 Submit
-              </button>
-              <p className="forgot-password text-right">
+              </Button>
+              <Form.Text className="text-muted text-right">
                 Don't have an account? <Link to="register">Sign up.</Link>
-              </p>
-            </form>
+              </Form.Text>
+            </Form>
           </div>
         </div>
       </div>

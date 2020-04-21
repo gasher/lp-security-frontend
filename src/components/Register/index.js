@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { Alert } from 'react-bootstrap';
+import { Alert, Form, Button } from 'react-bootstrap';
 
 import './styles.css';
 import { withStore, djangoErrorResponseParser } from '../helpers';
@@ -57,89 +57,96 @@ class Register extends Component {
         )}
         <div className="form-wrapper">
           <div className="form-inner">
-            <form onSubmit={event => this.handleSubmitForm(event)}>
-              <h3>Sign Up</h3>
+            <h3>Sign Up</h3>
 
-              <div className="form-group">
-                <label>First name</label>
-                <input
+            <Form onSubmit={event => this.handleSubmitForm(event)}>
+              <Form.Group>
+                <Form.Label>First name</Form.Label>
+                <Form.Control
                   type="text"
                   name="firstName"
-                  className="form-control"
                   placeholder="First name"
-                  value={firstName}
                   onChange={event => this.handleChange(event)}
+                  value={firstName}
+                  required
                 />
                 {error.first_name && (
-                  <label className="error">{error.first_name}</label>
+                  <Form.Text className="text-muted error">
+                    {error.first_name}
+                  </Form.Text>
                 )}
-              </div>
-
-              <div className="form-group">
-                <label>Last name</label>
-                <input
+              </Form.Group>
+              <Form.Group>
+                <Form.Label>Last name</Form.Label>
+                <Form.Control
                   type="text"
                   name="lastName"
-                  className="form-control"
                   placeholder="Last name"
-                  value={lastName}
                   onChange={event => this.handleChange(event)}
+                  value={lastName}
+                  required
                 />
                 {error.last_name && (
-                  <label className="error">{error.last_name}</label>
+                  <Form.Text className="text-muted error">
+                    {error.last_name}
+                  </Form.Text>
                 )}
-              </div>
-
-              <div className="form-group">
-                <label>Email address</label>
-                <input
+              </Form.Group>
+              <Form.Group>
+                <Form.Label>Email</Form.Label>
+                <Form.Control
                   type="email"
                   name="email"
-                  className="form-control"
-                  placeholder="Enter email"
-                  value={email}
+                  placeholder="Email"
                   onChange={event => this.handleChange(event)}
+                  value={email}
+                  required
                 />
-                {error.email && <label className="error">{error.email}</label>}
-              </div>
-
-              <div className="form-group">
-                <label>Username</label>
-                <input
+                {error.email && (
+                  <Form.Text className="text-muted error">
+                    {error.email}
+                  </Form.Text>
+                )}
+              </Form.Group>
+              <Form.Group>
+                <Form.Label>Username</Form.Label>
+                <Form.Control
                   type="text"
                   name="username"
-                  className="form-control"
                   placeholder="Enter username"
-                  value={username}
                   onChange={event => this.handleChange(event)}
+                  value={username}
+                  required
                 />
                 {error.username && (
-                  <label className="error">{error.username}</label>
+                  <Form.Text className="text-muted error">
+                    {error.username}
+                  </Form.Text>
                 )}
-              </div>
-
-              <div className="form-group">
-                <label>Password</label>
-                <input
+              </Form.Group>
+              <Form.Group>
+                <Form.Label>Password</Form.Label>
+                <Form.Control
                   type="password"
                   name="password"
-                  className="form-control"
                   placeholder="Enter password"
-                  value={password}
                   onChange={event => this.handleChange(event)}
+                  value={password}
+                  required
                 />
                 {error.password && (
-                  <label className="error">{error.password}</label>
+                  <Form.Text className="text-muted error">
+                    {error.password}
+                  </Form.Text>
                 )}
-              </div>
-
-              <button type="submit" className="btn btn-primary btn-block">
+              </Form.Group>
+              <Button variant="primary" type="submit" block>
                 Sign Up
-              </button>
-              <p className="forgot-password text-right">
+              </Button>
+              <Form.Text className="text-muted text-right">
                 Already registered? <Link to="login">Sign in.</Link>
-              </p>
-            </form>
+              </Form.Text>
+            </Form>
           </div>
         </div>
       </div>
