@@ -69,6 +69,61 @@ export default () => {
     },
   };
 
+  const routine = {
+    getAll(params) {
+      console.log(params);
+      return client.request({
+        method: 'get',
+        url: '/routines/',
+        headers: {
+          Authorization: `Token ${localStorage.token}`,
+        },
+      });
+    },
+
+    add(params) {
+      console.log(params);
+      return client.request({
+        method: 'post',
+        url: '/routines/',
+        headers: {
+          Authorization: `Token ${localStorage.token}`,
+        },
+        data: {
+          ...params,
+        },
+      });
+    },
+
+    update(params) {
+      console.log(params);
+      return client.request({
+        method: 'put',
+        url: `/routines/${params.id}/`,
+        headers: {
+          Authorization: `Token ${localStorage.token}`,
+        },
+        data: {
+          ...params,
+        },
+      });
+    },
+
+    delete(params) {
+      console.log(params);
+      return client.request({
+        method: 'post',
+        url: `/routines/${params.id}/`,
+        headers: {
+          Authorization: `Token ${localStorage.token}`,
+        },
+        data: {
+          ...params,
+        },
+      });
+    },
+  };
+
   const user = {
     login(params) {
       return client.request({
@@ -100,5 +155,6 @@ export default () => {
     camera,
     user,
     client,
+    routine,
   };
 };

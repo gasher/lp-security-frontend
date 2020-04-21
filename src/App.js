@@ -11,6 +11,8 @@ import Register from './components/Register';
 import Navbar from './components/Navbar';
 import CameraList from './components/CameraList';
 import CameraForm from './components/CameraForm';
+import RoutineList from './components/RoutineList';
+import RoutineForm from './components/RoutineForm';
 import ProtectedRoute from './components/ProtectedRoute';
 
 const store = createStore(config);
@@ -29,6 +31,8 @@ class App extends Component {
               <Route path="/register" component={Register} />
               <ProtectedRoute path="/cameras" component={CameraList} />
               <ProtectedRoute path="/camera-form" component={CameraForm} />
+              <ProtectedRoute path="/routines" component={RoutineList} />
+              <ProtectedRoute path="/routine-form" component={RoutineForm} />
             </Switch>
           </div>
         </BrowserRouter>
