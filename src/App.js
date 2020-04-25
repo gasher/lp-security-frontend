@@ -14,7 +14,8 @@ import CameraForm from './containers/forms/CameraForm';
 import RoutineList from './containers/lists/RoutineList';
 import RoutineForm from './containers/forms/RoutineForm';
 import ProtectedRoute from './components/ProtectedRoute';
-import ScriptList from './containers/lists/ScriptList';
+import CondigList from './containers/lists/ConfigList';
+import ConfigForm from './containers/forms/ConfigForm';
 
 const store = createStore(config);
 
@@ -33,7 +34,8 @@ class App extends Component {
               <ProtectedRoute path="/camera-form" component={CameraForm} />
               <ProtectedRoute path="/routines" component={RoutineList} />
               <ProtectedRoute path="/routine-form" component={RoutineForm} />
-              <ProtectedRoute path="/scripts" component={ScriptList} />
+              <ProtectedRoute path="/configs" component={CondigList} />
+              <ProtectedRoute path="/config-form" component={ConfigForm} />
             </Switch>
           </div>
         </BrowserRouter>

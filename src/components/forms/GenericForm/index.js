@@ -33,12 +33,18 @@ const GenericForm = props => {
           <Form.Label key={`${field.name}-label`}>{field.label}</Form.Label>
           <Form.Control
             key={`${field.name}-control`}
-            type={field.type}
+            as="select"
             name={field.name}
             onChange={event => handleChange(event)}
             value={entity[field.name]}
             required
-          />
+          >
+            {field.options.map(option => (
+              <option key={option.value} value={option.value}>
+                {option.label}
+              </option>
+            ))}
+          </Form.Control>
           {error[field.name] && (
             <Form.Text key={`${field.name}-text`} className="text-muted error">
               {error[field.name]}

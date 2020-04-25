@@ -1,9 +1,9 @@
 import axios from 'axios';
 
-import config from '../config';
+import apiConfig from '../config';
 
 export default () => {
-  const client = axios.create(config.api);
+  const client = axios.create(apiConfig.api);
 
   const getData = {
     data(params) {
@@ -154,6 +154,61 @@ export default () => {
     },
   };
 
+  const config = {
+    getAll(params) {
+      console.log(params);
+      return client.request({
+        method: 'get',
+        url: '/configs/',
+        headers: {
+          Authorization: `Token ${localStorage.token}`,
+        },
+      });
+    },
+
+    add(params) {
+      console.log(params);
+      return client.request({
+        method: 'post',
+        url: '/configs/',
+        headers: {
+          Authorization: `Token ${localStorage.token}`,
+        },
+        data: {
+          ...params,
+        },
+      });
+    },
+
+    update(params) {
+      console.log(params);
+      return client.request({
+        method: 'put',
+        url: `/configs/${params.id}/`,
+        headers: {
+          Authorization: `Token ${localStorage.token}`,
+        },
+        data: {
+          ...params,
+        },
+      });
+    },
+
+    delete(params) {
+      console.log(params);
+      return client.request({
+        method: 'post',
+        url: `/configs/${params.id}/`,
+        headers: {
+          Authorization: `Token ${localStorage.token}`,
+        },
+        data: {
+          ...params,
+        },
+      });
+    },
+  };
+
   const user = {
     login(params) {
       return client.request({
@@ -187,5 +242,6 @@ export default () => {
     client,
     routine,
     actions,
+    config,
   };
 };
