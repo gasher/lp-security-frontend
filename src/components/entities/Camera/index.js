@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { Col, Card, Modal, Button } from 'react-bootstrap';
 
 import './styles.css';
-import CameraForm from '../CameraForm';
 import Map from '../Map';
 import VideoFeed from '../VideoFeed';
 
@@ -14,6 +13,7 @@ const Camera = ({
   longitude,
   status,
   ip_address,
+  CameraForm,
 }) => {
   const [showMap, setShowMap] = useState(false);
   const [showEdit, setShowEdit] = useState(false);

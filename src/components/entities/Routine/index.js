@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Col, Card, Modal, Button } from 'react-bootstrap';
 
 import './styles.css';
-import RoutineForm from '../RoutineForm';
+import RoutineForm from '../../RoutineForm';
 
 const Routine = ({ id, name }) => {
   const [showEdit, setShowEdit] = useState(false);

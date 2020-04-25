@@ -14,6 +14,20 @@ export default () => {
     },
   };
 
+  const actions = {
+    getAll(params) {
+      console.log(params);
+
+      return client.request({
+        method: 'get',
+        url: params.url,
+        headers: {
+          Authorization: `Token ${localStorage.token}`,
+        },
+      });
+    },
+  };
+
   const camera = {
     getAll(params) {
       console.log(params);
@@ -156,5 +170,6 @@ export default () => {
     user,
     client,
     routine,
+    actions,
   };
 };
