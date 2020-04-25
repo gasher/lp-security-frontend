@@ -14,7 +14,7 @@ const fields = [
   },
   {
     name: 'file',
-    type: 'text',
+    type: 'file',
     label: 'File',
   },
 ];
@@ -24,13 +24,21 @@ class RoutineForm extends Component {
     id: this.props.id || null,
     name: this.props.name || '',
     file: this.props.file || '',
+    fileObject: null,
     error: {},
   };
 
   handleChange(event) {
     const {
-      target: { value, name },
+      target: { value, name, files, type },
     } = event;
+
+    if (type === 'file') {
+      return this.setState({
+        [name]: value,
+        fileObject: files[0],
+      });
+    }
 
     return this.setState({
       [name]: value,
@@ -45,11 +53,18 @@ class RoutineForm extends Component {
         store: { routineStore },
       } = this.props;
 
+      const response = await routineStore.upload({
+        file: this.state.fileObject,
+      });
+
       if (this.state.id) {
-        return routineStore.update(this.state);
+        return routineStore.update({
+          name: this.state.name,
+          file: response.data.id,
+        });
       }
 
-      await routineStore.add(this.state);
+      await routineStore.add({ name: this.state.name, file: response.data.id });
 
       return this.props.history.push('/routines');
     } catch (error) {

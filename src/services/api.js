@@ -84,6 +84,22 @@ export default () => {
   };
 
   const routine = {
+    upload(params) {
+      console.log(params);
+      const data = new FormData();
+      data.append('file', params.file);
+
+      return client.request({
+        method: 'post',
+        url: '/upload/',
+        headers: {
+          Authorization: `Token ${localStorage.token}`,
+          'Content-Type': 'multipart/form-data',
+        },
+        data,
+      });
+    },
+
     getAll(params) {
       console.log(params);
       return client.request({

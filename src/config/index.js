@@ -1,6 +1,7 @@
 export default {
   api: {
-    baseURL: 'https://blooming-forest-52131.herokuapp.com/',
+    // baseURL: 'https://blooming-forest-52131.herokuapp.com/',
+    baseURL: 'http://localhost:8000/',
     // baseURL:
     //   process.env.API_URL ||
     //   process.env.REACT_APP_API_URL ||

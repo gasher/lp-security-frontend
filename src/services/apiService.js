@@ -7,6 +7,20 @@ class APIService {
     this.client = axios.create(config.api);
   }
 
+  upload(params) {
+    const data = new FormData();
+    data.append('file', params.file);
+
+    return client.request({
+      method: 'post',
+      url: params.url,
+      headers: {
+        Authorization: `Token ${localStorage.token}`,
+      },
+      data,
+    });
+  }
+
   get(params) {
     console.log(params);
     return client.request({

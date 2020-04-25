@@ -34,6 +34,13 @@ class RoutineStore {
     return this.handleAdd(res.data);
   };
 
+  upload = async params => {
+    const sessionPromise = this.store.api.routine.upload(params);
+    this.sessionStatus = fromPromise(sessionPromise);
+
+    return sessionPromise;
+  };
+
   handleGet = data => {
     return this.setRoutines(data.results);
   };
