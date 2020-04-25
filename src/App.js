@@ -5,9 +5,9 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import config from './config';
 import createStore from './store';
 
-import Screen from './components/routes/Screen';
-import Login from './components/Login';
-import Register from './components/Register';
+import Dashboard from './components/Dashboard';
+import Login from './containers/forms/LoginForm';
+import Register from './containers/forms/RegisterForm';
 import Navbar from './components/Navbar';
 import CameraList from './containers/lists/CameraList';
 import CameraForm from './containers/forms/CameraForm';
@@ -26,7 +26,7 @@ class App extends Component {
           <div>
             <Navbar />
             <Switch>
-              <ProtectedRoute path="/" component={Screen} exact />
+              <ProtectedRoute path="/" component={Dashboard} exact />
               <Route path="/login" component={Login} />
               <Route path="/register" component={Register} />
               <ProtectedRoute path="/cameras" component={CameraList} />

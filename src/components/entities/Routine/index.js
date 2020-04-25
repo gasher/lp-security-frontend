@@ -2,9 +2,8 @@ import React, { useState } from 'react';
 import { Col, Card, Modal, Button } from 'react-bootstrap';
 
 import './styles.css';
-import RoutineForm from '../../RoutineForm';
 
-const Routine = ({ id, name }) => {
+const Routine = ({ id, name, file, RoutineForm }) => {
   const [showEdit, setShowEdit] = useState(false);
 
   const handleCloseEdit = () => setShowEdit(false);
@@ -30,6 +29,7 @@ const Routine = ({ id, name }) => {
             {...{
               id,
               name,
+              file,
             }}
           />
         </Modal.Body>
