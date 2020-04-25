@@ -16,6 +16,7 @@ class APIService {
       url: params.url,
       headers: {
         Authorization: `Token ${localStorage.token}`,
+        'Content-Type': 'multipart/form-data',
       },
       data,
     });
