@@ -1,6 +1,8 @@
 {
   "name": "react-mobx-axios",
-  "engines" : { "node" : "10" },
+  "engines": {
+    "node": "10"
+  },
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -13,6 +15,7 @@
     "mobx-cookie": "^2.0.1",
     "mobx-react": "^5.3.6",
     "mobx-utils": "^4.0.1",
+    "moment": "2.25.3",
     "node-sass": "^4.9.3",
     "normalizr": "^3.2.4",
     "pigeon-maps": "0.15.0",

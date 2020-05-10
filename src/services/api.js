@@ -212,11 +212,25 @@ export default () => {
     },
   };
 
+  const trigger = {
+    getAll(params) {
+      console.log(params);
+      return client.request({
+        method: 'get',
+        url: '/triggers/',
+        headers: {
+          Authorization: `Token ${localStorage.token}`,
+        },
+      });
+    },
+  };
+
   return {
     camera,
     user,
     client,
     routine,
     config,
+    trigger,
   };
 };

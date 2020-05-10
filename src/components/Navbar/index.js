@@ -33,6 +33,7 @@ class Navbar extends Component {
             <Nav.Link href="/cameras">Cameras</Nav.Link>
             <Nav.Link href="/routines">Routines</Nav.Link>
             <Nav.Link href="/configs">Configs</Nav.Link>
+            <Nav.Link href="/triggers">Triggers</Nav.Link>
             <Nav.Link onClick={() => this.handleSignOut()}>Sign out</Nav.Link>
           </Nav>
         )}

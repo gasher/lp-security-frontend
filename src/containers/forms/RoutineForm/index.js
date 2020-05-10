@@ -23,7 +23,7 @@ class RoutineForm extends Component {
   state = {
     id: this.props.id || null,
     name: this.props.name || '',
-    file: this.props.file || '',
+    file: '',
     fileObject: null,
     error: {},
   };
