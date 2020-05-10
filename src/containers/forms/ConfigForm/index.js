@@ -50,6 +50,18 @@ class ConfigForm extends Component {
     const cameras = await cameraStore.getAll();
     const routines = await routineStore.getAll();
 
+    if (cameras.length > 0) {
+      this.setState({
+        camera: cameras[0].id,
+      });
+    }
+
+    if (routines.length > 0) {
+      this.setState({
+        routine: routines[0].id,
+      });
+    }
+
     return this.setState({
       cameras,
       routines,
