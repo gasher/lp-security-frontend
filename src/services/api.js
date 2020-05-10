@@ -187,6 +187,15 @@ export default () => {
   };
 
   const user = {
+    getCurrentUser(params) {
+      return client.request({
+        method: 'get',
+        url: '/current-user/',
+        headers: {
+          Authorization: `Token ${localStorage.token}`,
+        },
+      });
+    },
     login(params) {
       return client.request({
         method: 'post',

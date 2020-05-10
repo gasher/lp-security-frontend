@@ -5,7 +5,7 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import config from './config';
 import createStore from './store';
 
-import Dashboard from './components/Dashboard';
+import Dashboard from './containers/pages/Dashboard';
 import Login from './containers/forms/LoginForm';
 import Register from './containers/forms/RegisterForm';
 import Navbar from './components/Navbar';

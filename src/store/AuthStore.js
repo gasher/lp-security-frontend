@@ -5,6 +5,7 @@ import Cookie from 'mobx-cookie';
 class AuthStore {
   constructor(store) {
     this.store = store;
+    this.currentUser = null;
     extendObservable(this, {
       token: new Cookie('token'),
     });
@@ -34,6 +35,22 @@ class AuthStore {
     return this.handleAuth(res.data);
   };
 
+  getCurrentUser = async params => {
+    const sessionPromise = this.store.api.user.getCurrentUser(params);
+    this.sessionStatus = fromPromise(sessionPromise);
+    const res = await sessionPromise;
+
+    return this.handleGetCurrentUser(res.data);
+  };
+
+  handleGetCurrentUser = data => {
+    return this.setCurrentUser(data);
+  };
+
+  setCurrentUser = user => {
+    return (this.currentUser = user);
+  };
+
   handleAuth = data => {
     this.setToken(data.token);
   };
@@ -54,6 +71,7 @@ class AuthStore {
 
 decorate(AuthStore, {
   sessionStatus: observable,
+  currentUser: observable,
   isLoggedIn: computed,
   signUp: action,
   login: action,

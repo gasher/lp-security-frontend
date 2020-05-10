@@ -3,16 +3,26 @@ import { Jumbotron, Button } from 'react-bootstrap';
 
 import './styles.css';
 
-const Dashboard = () => {
+const Dashboard = ({ currentUser, cameras, routines }) => {
   return (
     <Jumbotron>
-      <h1>Hello, world!</h1>
+      <h1>{currentUser && `Hello ${currentUser.first_name}`}</h1>
       <p>
-        This is a simple hero unit, a simple jumbotron-style component for
-        calling extra attention to featured content or information.
+        {cameras &&
+          routines &&
+          `You have ${routines.length} routines and ${
+            cameras.length
+          } cameras from which ${
+            cameras.filter(camera => camera.status === 'AC').length
+          } active.`}
       </p>
       <p>
-        <Button variant="primary">Learn more</Button>
+        <Button variant="primary" href="/cameras">
+          Manage cameras
+        </Button>{' '}
+        <Button variant="secondary" href="/routines">
+          Manage routines
+        </Button>
       </p>
     </Jumbotron>
   );
