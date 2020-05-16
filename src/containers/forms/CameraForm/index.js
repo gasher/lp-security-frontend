@@ -18,14 +18,14 @@ const fields = [
     label: 'Description',
   },
   {
-    name: 'longitude',
-    type: 'text',
-    label: 'Longitude',
-  },
-  {
     name: 'latitude',
     type: 'text',
     label: 'Latitude',
+  },
+  {
+    name: 'longitude',
+    type: 'text',
+    label: 'Longitude',
   },
   {
     name: 'status',

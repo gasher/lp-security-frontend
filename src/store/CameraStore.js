@@ -43,7 +43,8 @@ class CameraStore {
   };
 
   handleUpdate = data => {
-    const cameras = this.cameras.filter(o => o.id !== data.id).push(data);
+    const cameras = this.cameras.filter(o => o.id !== data.id);
+    cameras.push(data);
 
     return this.setCameras(cameras);
   };

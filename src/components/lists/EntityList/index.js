@@ -1,5 +1,7 @@
 import React from 'react';
-import { Container, Row, Button } from 'react-bootstrap';
+import { Container, Button } from 'react-bootstrap';
+
+import './styles.css';
 
 const EntityList = props => {
   return (

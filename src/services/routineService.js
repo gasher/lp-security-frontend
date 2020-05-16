@@ -1,19 +1,13 @@
-import axios from 'axios';
+import client from './client';
 
-import config from '../config';
-
-class APIService {
-  constructor() {
-    this.client = axios.create(config.api);
-  }
-
+class RoutineService {
   upload(params) {
     const data = new FormData();
     data.append('file', params.file);
 
     return client.request({
       method: 'post',
-      url: params.url,
+      url: '/upload/',
       headers: {
         Authorization: `Token ${localStorage.token}`,
         'Content-Type': 'multipart/form-data',
@@ -22,11 +16,10 @@ class APIService {
     });
   }
 
-  get(params) {
-    console.log(params);
+  getAll(params) {
     return client.request({
       method: 'get',
-      url: params.url,
+      url: '/routines/',
       headers: {
         Authorization: `Token ${localStorage.token}`,
       },
@@ -34,43 +27,43 @@ class APIService {
   }
 
   add(params) {
-    console.log(params);
     return client.request({
       method: 'post',
-      url: params.url,
+      url: '/routines/',
       headers: {
         Authorization: `Token ${localStorage.token}`,
       },
       data: {
-        ...params.data,
+        ...params,
       },
     });
   }
 
   update(params) {
-    console.log(params);
     return client.request({
       method: 'put',
-      url: params.url,
+      url: `/routines/${params.id}/`,
       headers: {
         Authorization: `Token ${localStorage.token}`,
       },
       data: {
-        ...params.data,
+        ...params,
       },
     });
   }
 
   delete(params) {
-    console.log(params);
     return client.request({
-      method: 'delete',
-      url: params.url,
+      method: 'post',
+      url: `/routines/${params.id}/`,
       headers: {
         Authorization: `Token ${localStorage.token}`,
+      },
+      data: {
+        ...params,
       },
     });
   }
 }
 
-export default new APIService();
+export default new RoutineService();

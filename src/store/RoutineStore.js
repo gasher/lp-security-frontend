@@ -50,9 +50,10 @@ class RoutineStore {
   };
 
   handleUpdate = data => {
-    const routines = this.routines.filter(o => o.id !== data.id).push(data);
+    const routines = this.routines.filter(o => o.id !== data.id);
+    routines.push(data);
 
-    return this.setCameras(routines);
+    return this.setRoutines(routines);
   };
 
   setRoutines = routines => {

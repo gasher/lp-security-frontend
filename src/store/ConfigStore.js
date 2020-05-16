@@ -50,9 +50,10 @@ class ConfigStore {
   };
 
   handleUpdate = data => {
-    const configs = this.configs.filter(o => o.id !== data.id).push(data);
+    const configs = this.configs.filter(o => o.id !== data.id);
+    configs.push(data);
 
-    return this.setCameras(configs);
+    return this.setConfigs(configs);
   };
 
   setConfigs = configs => {
