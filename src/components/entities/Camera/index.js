@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
-import { Col, Card, Modal, Button } from 'react-bootstrap';
+import { Button, Jumbotron } from 'react-bootstrap';
 
 import './styles.css';
+import ConfigFile from '../ConfigFile';
 import Map from '../Map';
+import ModalComponent from '../Modal';
 import VideoFeed from '../VideoFeed';
+import { generateConfigFile } from '../../../config/templates';
 
 const Camera = ({
   id,
@@ -18,6 +21,7 @@ const Camera = ({
   const [showMap, setShowMap] = useState(false);
   const [showEdit, setShowEdit] = useState(false);
   const [showFeed, setShowFeed] = useState(false);
+  const [showConfigJSON, setShowConfigJSON] = useState(false);
 
   const handleCloseMap = () => setShowMap(false);
   const handleShowMap = () => setShowMap(true);
@@ -25,18 +29,18 @@ const Camera = ({
   const handleShowEdit = () => setShowEdit(true);
   const handleCloseFeed = () => setShowFeed(false);
   const handleShowFeed = () => setShowFeed(true);
+  const handleShowConfigJSON = () => setShowConfigJSON(true);
+  const handleCloseConfigJSON = () => setShowConfigJSON(false);
 
   const statusLabel = status === 'AC' ? 'active' : 'inactive';
 
   return (
-    <Col xs="4">
-      <Card className="text-center camera">
-        <Card.Body>
-          <Card.Title>{name}</Card.Title>
-          <Card.Subtitle className={`status-${statusLabel}`}>
-            {statusLabel}
-          </Card.Subtitle>
-          <Card.Text>{description}</Card.Text>
+    <div className="camera">
+      <Jumbotron>
+        <h1>{name}</h1>
+        <h3 className={`status-${statusLabel}`}>{statusLabel}</h3>
+        <p>{description}</p>
+        <p>
           <Button variant="secondary" onClick={handleShowMap}>
             Show map
           </Button>{' '}
@@ -46,23 +50,22 @@ const Camera = ({
           <Button variant="info" onClick={handleShowFeed}>
             Show video feed
           </Button>{' '}
-        </Card.Body>
-      </Card>
-      <Modal show={showMap} onHide={handleCloseMap}>
-        <Modal.Header closeButton>
-          <Modal.Title>{name}</Modal.Title>
-        </Modal.Header>
-
-        <Modal.Body>
-          <Map {...{ longitude, latitude }} />
-        </Modal.Body>
-      </Modal>
-      <Modal show={showEdit} onHide={handleCloseEdit}>
-        <Modal.Header closeButton>
-          <Modal.Title>{name}</Modal.Title>
-        </Modal.Header>
-
-        <Modal.Body>
+          <Button variant="secondary" onClick={handleShowConfigJSON}>
+            Get config.json
+          </Button>{' '}
+        </p>
+      </Jumbotron>
+      <ModalComponent
+        show={showMap}
+        handleClose={handleCloseMap}
+        title={name}
+        BodyComponent={<Map {...{ longitude, latitude }} />}
+      />
+      <ModalComponent
+        show={showEdit}
+        handleClose={handleCloseEdit}
+        title={name}
+        BodyComponent={
           <CameraForm
             {...{
               id,
@@ -74,18 +77,21 @@ const Camera = ({
               ip_address,
             }}
           />
-        </Modal.Body>
-      </Modal>
-      <Modal show={showFeed} onHide={handleCloseFeed}>
-        <Modal.Header closeButton>
-          <Modal.Title>{name}</Modal.Title>
-        </Modal.Header>
-
-        <Modal.Body>
-          <VideoFeed {...{ ip_address }} />
-        </Modal.Body>
-      </Modal>
-    </Col>
+        }
+      />
+      <ModalComponent
+        show={showFeed}
+        handleClose={handleCloseFeed}
+        title={name}
+        BodyComponent={<VideoFeed {...{ ip_address }} />}
+      />
+      <ModalComponent
+        show={showConfigJSON}
+        handleClose={handleCloseConfigJSON}
+        title="Copy this content into your agent's config.json"
+        BodyComponent={<ConfigFile content={generateConfigFile(id)} />}
+      />
+    </div>
   );
 };
 

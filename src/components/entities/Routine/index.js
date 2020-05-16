@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import { Col, Card, Modal, Button } from 'react-bootstrap';
+import { Col, Card, Button } from 'react-bootstrap';
 
 import './styles.css';
+import ModalComponent from '../Modal';
 
 const Routine = ({ id, name, file, RoutineForm }) => {
   const [showEdit, setShowEdit] = useState(false);
@@ -19,12 +20,11 @@ const Routine = ({ id, name, file, RoutineForm }) => {
           </Button>{' '}
         </Card.Body>
       </Card>
-      <Modal show={showEdit} onHide={handleCloseEdit}>
-        <Modal.Header closeButton>
-          <Modal.Title>{name}</Modal.Title>
-        </Modal.Header>
-
-        <Modal.Body>
+      <ModalComponent
+        show={showEdit}
+        handleClose={handleCloseEdit}
+        title={name}
+        BodyComponent={
           <RoutineForm
             {...{
               id,
@@ -32,8 +32,8 @@ const Routine = ({ id, name, file, RoutineForm }) => {
               file,
             }}
           />
-        </Modal.Body>
-      </Modal>
+        }
+      />
     </Col>
   );
 };

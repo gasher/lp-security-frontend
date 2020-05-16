@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import { Col, Card, Modal, Button } from 'react-bootstrap';
+import { Col, Card, Button } from 'react-bootstrap';
 
 import './styles.css';
+import ModalComponent from '../Modal';
 
 const Config = ({ id, name, routine, camera, ConfigForm }) => {
   const [showEdit, setShowEdit] = useState(false);
@@ -19,12 +20,11 @@ const Config = ({ id, name, routine, camera, ConfigForm }) => {
           </Button>{' '}
         </Card.Body>
       </Card>
-      <Modal show={showEdit} onHide={handleCloseEdit}>
-        <Modal.Header closeButton>
-          <Modal.Title>{name}</Modal.Title>
-        </Modal.Header>
-
-        <Modal.Body>
+      <ModalComponent
+        show={showEdit}
+        handleClose={handleCloseEdit}
+        title={name}
+        BodyComponent={
           <ConfigForm
             {...{
               id,
@@ -33,8 +33,8 @@ const Config = ({ id, name, routine, camera, ConfigForm }) => {
               camera,
             }}
           />
-        </Modal.Body>
-      </Modal>
+        }
+      />
     </Col>
   );
 };

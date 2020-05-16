@@ -4,8 +4,12 @@ import { Container, Row, Button } from 'react-bootstrap';
 const EntityList = props => {
   return (
     <Container>
-      {props.addHref && <Button href={props.addHref}>Add new</Button>}
-      <Row>{props.entities}</Row>
+      {props.addHref && (
+        <Button className="add-button" href={props.addHref}>
+          Add new
+        </Button>
+      )}
+      {props.entities}
     </Container>
   );
 };

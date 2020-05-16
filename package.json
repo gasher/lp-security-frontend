@@ -39,7 +39,7 @@
     "lint:fix": "eslint --fix 'src/'",
     "format": "prettier --write 'src/**/*.js'",
     "precommit": "lint-staged",
-    "start-with-heroku-api": "API_URL=https://blooming-forest-52131.herokuapp.com/ react-scripts start"
+    "start-with-heroku-api": "API_URL='https://blooming-forest-52131.herokuapp.com/' react-scripts start"
   },
   "lint-staged": {
     "*.js": [
