@@ -82,13 +82,14 @@ class CameraForm extends Component {
       } = this.props;
 
       if (this.state.id) {
-        return cameraStore.update(this.state);
+        await cameraStore.update(this.state);
+      } else {
+        await cameraStore.add(this.state);
       }
 
-      await cameraStore.add(this.state);
-
-      return this.props.history.push('/cameras');
+      return this.props.history && this.props.history.push('/cameras');
     } catch (error) {
+      console.log(error);
       return this.setState({
         error: djangoErrorResponseParser(error),
       });

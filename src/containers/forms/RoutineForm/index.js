@@ -58,15 +58,18 @@ class RoutineForm extends Component {
       });
 
       if (this.state.id) {
-        return routineStore.update({
+        await routineStore.update({
+          name: this.state.name,
+          file: response.data.id,
+        });
+      } else {
+        await routineStore.add({
           name: this.state.name,
           file: response.data.id,
         });
       }
 
-      await routineStore.add({ name: this.state.name, file: response.data.id });
-
-      return this.props.history.push('/routines');
+      return this.props.history && this.props.history.push('/routines');
     } catch (error) {
       console.log(djangoErrorResponseParser);
       return this.setState({

@@ -87,23 +87,22 @@ class ConfigForm extends Component {
       } = this.props;
 
       if (this.state.id) {
-        return configStore.update({
+        await configStore.update({
           id: this.state.id,
+          name: this.state.name,
+          camera: this.state.camera,
+          routine: this.state.routine,
+        });
+      } else {
+        await configStore.add({
           name: this.state.name,
           camera: this.state.camera,
           routine: this.state.routine,
         });
       }
 
-      await configStore.add({
-        name: this.state.name,
-        camera: this.state.camera,
-        routine: this.state.routine,
-      });
-
-      return this.props.history.push('/configs');
+      return this.props.history && this.props.history.push('/configs');
     } catch (error) {
-      console.log(djangoErrorResponseParser);
       return this.setState({
         error: djangoErrorResponseParser(error),
       });
