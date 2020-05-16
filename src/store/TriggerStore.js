@@ -1,6 +1,8 @@
 import { decorate, observable, action } from 'mobx';
 import { fromPromise } from 'mobx-utils';
 
+import triggerService from '../services/triggerService';
+
 class TriggerStore {
   constructor(store) {
     this.store = store;
@@ -11,7 +13,7 @@ class TriggerStore {
   sessionStatus;
 
   getAll = async params => {
-    const sessionPromise = this.store.api.trigger.getAll(params);
+    const sessionPromise = triggerService.getAll(params);
     this.sessionStatus = fromPromise(sessionPromise);
     const res = await sessionPromise;
 

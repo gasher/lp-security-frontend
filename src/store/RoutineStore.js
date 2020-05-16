@@ -1,6 +1,8 @@
 import { decorate, observable, action } from 'mobx';
 import { fromPromise } from 'mobx-utils';
 
+import routineService from '../services/routineService';
+
 class RoutineStore {
   constructor(store) {
     this.store = store;
@@ -11,7 +13,7 @@ class RoutineStore {
   sessionStatus;
 
   getAll = async params => {
-    const sessionPromise = this.store.api.routine.getAll(params);
+    const sessionPromise = routineService.getAll(params);
     this.sessionStatus = fromPromise(sessionPromise);
     const res = await sessionPromise;
 
@@ -19,7 +21,7 @@ class RoutineStore {
   };
 
   update = async params => {
-    const sessionPromise = this.store.api.routine.update(params);
+    const sessionPromise = routineService.update(params);
     this.sessionStatus = fromPromise(sessionPromise);
     const res = await sessionPromise;
 
@@ -27,7 +29,7 @@ class RoutineStore {
   };
 
   add = async params => {
-    const sessionPromise = this.store.api.routine.add(params);
+    const sessionPromise = routineService.add(params);
     this.sessionStatus = fromPromise(sessionPromise);
     const res = await sessionPromise;
 
@@ -35,7 +37,7 @@ class RoutineStore {
   };
 
   upload = async params => {
-    const sessionPromise = this.store.api.routine.upload(params);
+    const sessionPromise = routineService.upload(params);
     this.sessionStatus = fromPromise(sessionPromise);
 
     return sessionPromise;

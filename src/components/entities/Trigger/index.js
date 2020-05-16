@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Col, Card, Modal, Button } from 'react-bootstrap';
+import React from 'react';
+import { Col, Card } from 'react-bootstrap';
 import moment from 'moment';
 
 import './styles.css';

@@ -1,6 +1,8 @@
 import { decorate, observable, action } from 'mobx';
 import { fromPromise } from 'mobx-utils';
 
+import configService from '../services/configService';
+
 class ConfigStore {
   constructor(store) {
     this.store = store;
@@ -11,7 +13,7 @@ class ConfigStore {
   sessionStatus;
 
   getAll = async params => {
-    const sessionPromise = this.store.api.config.getAll(params);
+    const sessionPromise = configService.getAll(params);
     this.sessionStatus = fromPromise(sessionPromise);
     const res = await sessionPromise;
 
@@ -19,7 +21,7 @@ class ConfigStore {
   };
 
   update = async params => {
-    const sessionPromise = this.store.api.config.update(params);
+    const sessionPromise = configService.update(params);
     this.sessionStatus = fromPromise(sessionPromise);
     const res = await sessionPromise;
 
@@ -27,7 +29,7 @@ class ConfigStore {
   };
 
   add = async params => {
-    const sessionPromise = this.store.api.config.add(params);
+    const sessionPromise = configService.add(params);
     this.sessionStatus = fromPromise(sessionPromise);
     const res = await sessionPromise;
 
@@ -35,7 +37,7 @@ class ConfigStore {
   };
 
   upload = async params => {
-    const sessionPromise = this.store.api.config.upload(params);
+    const sessionPromise = configService.upload(params);
     this.sessionStatus = fromPromise(sessionPromise);
 
     return sessionPromise;

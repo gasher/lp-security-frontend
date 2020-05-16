@@ -1,6 +1,8 @@
 import { decorate, observable, action } from 'mobx';
 import { fromPromise } from 'mobx-utils';
 
+import cameraService from '../services/cameraService';
+
 class CameraStore {
   constructor(store) {
     this.store = store;
@@ -11,7 +13,7 @@ class CameraStore {
   sessionStatus;
 
   getAll = async params => {
-    const sessionPromise = this.store.api.camera.getAll(params);
+    const sessionPromise = cameraService.getAll(params);
     this.sessionStatus = fromPromise(sessionPromise);
     const res = await sessionPromise;
 
@@ -19,7 +21,7 @@ class CameraStore {
   };
 
   update = async params => {
-    const sessionPromise = this.store.api.camera.update(params);
+    const sessionPromise = cameraService.update(params);
     this.sessionStatus = fromPromise(sessionPromise);
     const res = await sessionPromise;
 
@@ -27,7 +29,7 @@ class CameraStore {
   };
 
   add = async params => {
-    const sessionPromise = this.store.api.camera.add(params);
+    const sessionPromise = cameraService.add(params);
     this.sessionStatus = fromPromise(sessionPromise);
     const res = await sessionPromise;
 
@@ -58,7 +60,7 @@ class CameraStore {
   };
 
   add = async params => {
-    const sessionPromise = this.store.api.camera.add(params);
+    const sessionPromise = cameraService.add(params);
     this.sessionStatus = fromPromise(sessionPromise);
     const res = await sessionPromise;
 

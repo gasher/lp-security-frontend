@@ -2,7 +2,6 @@ import client from './client';
 
 class TriggerService {
   getAll(params) {
-    console.log(params);
     return client.request({
       method: 'get',
       url: '/triggers/',
