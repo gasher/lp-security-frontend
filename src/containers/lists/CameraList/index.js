@@ -4,6 +4,7 @@ import Camera from '../../../components/entities/Camera';
 import EntityList from '../../../components/lists/EntityList';
 import { withStore } from '../../../components/helpers';
 import CameraForm from '../../forms/CameraForm';
+import TriggerRoutinesForm from '../../forms/TriggerRoutinesForm';
 
 class CameraList extends Component {
   state = {
@@ -23,7 +24,12 @@ class CameraList extends Component {
 
   mapScriptsToComponents() {
     return this.state.cameras.map(camera => (
-      <Camera key={camera.id} CameraForm={CameraForm} {...camera} />
+      <Camera
+        key={camera.id}
+        CameraForm={CameraForm}
+        TriggerRoutinesForm={TriggerRoutinesForm}
+        {...camera}
+      />
     ));
   }
 

@@ -17,11 +17,13 @@ const Camera = ({
   status,
   ip_address,
   CameraForm,
+  TriggerRoutinesForm,
 }) => {
   const [showMap, setShowMap] = useState(false);
   const [showEdit, setShowEdit] = useState(false);
   const [showFeed, setShowFeed] = useState(false);
   const [showConfigJSON, setShowConfigJSON] = useState(false);
+  const [showTriggerRoutines, setShowTriggerRoutines] = useState(false);
 
   const handleCloseMap = () => setShowMap(false);
   const handleShowMap = () => setShowMap(true);
@@ -31,6 +33,8 @@ const Camera = ({
   const handleShowFeed = () => setShowFeed(true);
   const handleShowConfigJSON = () => setShowConfigJSON(true);
   const handleCloseConfigJSON = () => setShowConfigJSON(false);
+  const handleShowTriggerRoutines = () => setShowTriggerRoutines(true);
+  const handleCloseTriggerRoutines = () => setShowTriggerRoutines(false);
 
   const statusLabel = status === 'AC' ? 'active' : 'inactive';
 
@@ -52,6 +56,9 @@ const Camera = ({
           </Button>{' '}
           <Button variant="secondary" onClick={handleShowConfigJSON}>
             Get config.json
+          </Button>{' '}
+          <Button variant="danger" onClick={handleShowTriggerRoutines}>
+            Execute associated routines
           </Button>{' '}
         </p>
       </Jumbotron>
@@ -91,6 +98,17 @@ const Camera = ({
         handleClose={handleCloseConfigJSON}
         title="Copy this content into your agent's config.json"
         BodyComponent={<ConfigFile content={generateConfigFile(id)} />}
+      />
+      <ModalComponent
+        show={showTriggerRoutines}
+        handleClose={handleCloseTriggerRoutines}
+        title={name}
+        BodyComponent={
+          <TriggerRoutinesForm
+            cameraId={id}
+            closeModal={() => handleCloseTriggerRoutines()}
+          />
+        }
       />
     </div>
   );

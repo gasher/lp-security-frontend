@@ -49,6 +49,19 @@ class CameraService {
       },
     });
   }
+
+  executeRoutines(params) {
+    return client.request({
+      method: 'post',
+      url: '/license-plate/',
+      headers: {
+        Authorization: `Token ${localStorage.token}`,
+      },
+      data: {
+        ...params,
+      },
+    });
+  }
 }
 
 export default new CameraService();

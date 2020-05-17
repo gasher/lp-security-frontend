@@ -91,7 +91,6 @@ class CameraForm extends Component {
 
       return this.props.history && this.props.history.push('/cameras');
     } catch (error) {
-      console.log(error);
       return this.setState({
         error: djangoErrorResponseParser(error),
       });

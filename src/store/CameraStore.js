@@ -36,6 +36,13 @@ class CameraStore {
     return this.handleAdd(res.data);
   };
 
+  executeRoutines = async params => {
+    const sessionPromise = cameraService.executeRoutines(params);
+    this.sessionStatus = fromPromise(sessionPromise);
+
+    return sessionPromise;
+  };
+
   handleGet = data => {
     return this.setCameras(data.results);
   };
