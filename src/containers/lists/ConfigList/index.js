@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Row } from 'react-bootstrap';
 
 import Config from '../../../components/entities/Config';
 import EntityList from '../../../components/lists/EntityList';
@@ -22,9 +23,13 @@ class ConfigList extends Component {
   }
 
   mapScriptsToComponents() {
-    return this.state.configs.map(config => (
-      <Config key={config.id} ConfigForm={ConfigForm} {...config} />
-    ));
+    return (
+      <Row>
+        {this.state.configs.map(config => (
+          <Config key={config.id} ConfigForm={ConfigForm} {...config} />
+        ))}
+      </Row>
+    );
   }
 
   render() {

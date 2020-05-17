@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Row } from 'react-bootstrap';
 
 import Routine from '../../../components/entities/Routine';
 import EntityList from '../../../components/lists/EntityList';
@@ -22,9 +23,13 @@ class RoutineList extends Component {
   }
 
   mapScriptsToComponents() {
-    return this.state.routines.map(routine => (
-      <Routine key={routine.id} RoutineForm={RoutineForm} {...routine} />
-    ));
+    return (
+      <Row>
+        {this.state.routines.map(routine => (
+          <Routine key={routine.id} RoutineForm={RoutineForm} {...routine} />
+        ))}
+      </Row>
+    );
   }
 
   render() {

@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
+import { Row } from 'react-bootstrap';
 
 import Trigger from '../../../components/entities/Trigger';
 import EntityList from '../../../components/lists/EntityList';
 import { withStore } from '../../../components/helpers';
 
-class ScriptList extends Component {
+class TriggerList extends Component {
   state = {
     triggers: [],
   };
@@ -29,9 +30,13 @@ class ScriptList extends Component {
   }
 
   mapScriptsToComponents() {
-    return this.state.triggers.map(trigger => (
-      <Trigger key={trigger.id} {...trigger} />
-    ));
+    return (
+      <Row>
+        {this.state.triggers.map(trigger => (
+          <Trigger key={trigger.id} {...trigger} />
+        ))}
+      </Row>
+    );
   }
 
   render() {
@@ -39,4 +44,4 @@ class ScriptList extends Component {
   }
 }
 
-export default withStore(ScriptList);
+export default withStore(TriggerList);
