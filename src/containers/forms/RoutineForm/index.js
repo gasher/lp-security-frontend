@@ -51,6 +51,7 @@ class RoutineForm extends Component {
     try {
       const {
         store: { routineStore },
+        closeModal,
       } = this.props;
 
       const response = await routineStore.upload({
@@ -62,12 +63,14 @@ class RoutineForm extends Component {
           name: this.state.name,
           file: response.data.id,
         });
-      } else {
-        await routineStore.add({
-          name: this.state.name,
-          file: response.data.id,
-        });
+
+        return closeModal();
       }
+
+      await routineStore.add({
+        name: this.state.name,
+        file: response.data.id,
+      });
 
       return this.props.history && this.props.history.push('/routines');
     } catch (error) {

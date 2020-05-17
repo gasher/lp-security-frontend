@@ -31,6 +31,7 @@ const Config = ({ id, name, routine, camera, ConfigForm }) => {
               name,
               routine,
               camera,
+              closeModal: () => handleCloseEdit(),
             }}
           />
         }

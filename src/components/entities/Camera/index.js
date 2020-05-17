@@ -75,6 +75,7 @@ const Camera = ({
               longitude,
               status,
               ip_address,
+              closeModal: () => handleCloseEdit(),
             }}
           />
         }

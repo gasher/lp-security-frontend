@@ -30,6 +30,7 @@ const Routine = ({ id, name, file, RoutineForm }) => {
               id,
               name,
               file,
+              closeModal: () => handleCloseEdit(),
             }}
           />
         }

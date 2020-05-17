@@ -84,6 +84,7 @@ class ConfigForm extends Component {
     try {
       const {
         store: { configStore },
+        closeModal,
       } = this.props;
 
       if (this.state.id) {
@@ -93,13 +94,15 @@ class ConfigForm extends Component {
           camera: this.state.camera,
           routine: this.state.routine,
         });
-      } else {
-        await configStore.add({
-          name: this.state.name,
-          camera: this.state.camera,
-          routine: this.state.routine,
-        });
+
+        return closeModal();
       }
+
+      await configStore.add({
+        name: this.state.name,
+        camera: this.state.camera,
+        routine: this.state.routine,
+      });
 
       return this.props.history && this.props.history.push('/configs');
     } catch (error) {

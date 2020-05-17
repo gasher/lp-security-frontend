@@ -2,6 +2,8 @@ import { decorate, observable, computed, action, extendObservable } from 'mobx';
 import { fromPromise } from 'mobx-utils';
 import Cookie from 'mobx-cookie';
 
+import userService from '../services/userService';
+
 class AuthStore {
   constructor(store) {
     this.store = store;
@@ -21,13 +23,13 @@ class AuthStore {
 
   // Actions
   signUp = async params => {
-    const sessionPromise = this.store.api.user.signup(params);
+    const sessionPromise = userService.signup(params);
     this.sessionStatus = fromPromise(sessionPromise);
     return sessionPromise;
   };
 
   login = async params => {
-    const sessionPromise = this.store.api.user.login(params);
+    const sessionPromise = userService.login(params);
     this.sessionStatus = fromPromise(sessionPromise);
     const res = await sessionPromise;
 
@@ -35,7 +37,7 @@ class AuthStore {
   };
 
   getCurrentUser = async params => {
-    const sessionPromise = this.store.api.user.getCurrentUser(params);
+    const sessionPromise = userService.getCurrentUser(params);
     this.sessionStatus = fromPromise(sessionPromise);
     const res = await sessionPromise;
 

@@ -79,13 +79,15 @@ class CameraForm extends Component {
     try {
       const {
         store: { cameraStore },
+        closeModal,
       } = this.props;
 
       if (this.state.id) {
         await cameraStore.update(this.state);
-      } else {
-        await cameraStore.add(this.state);
+        return closeModal();
       }
+
+      await cameraStore.add(this.state);
 
       return this.props.history && this.props.history.push('/cameras');
     } catch (error) {
