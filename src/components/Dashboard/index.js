@@ -1,5 +1,6 @@
 import React from 'react';
 import { Jumbotron, Button } from 'react-bootstrap';
+import Chart from '../Chart';
 
 import './styles.css';
 
@@ -24,6 +25,13 @@ const Dashboard = ({ currentUser, cameras, routines }) => {
           Manage routines
         </Button>
       </p>
+      <div>
+        <Chart
+          title="Cameras Status"
+          active={cameras.filter(camera => camera.status === 'AC').length}
+          inactive={cameras.filter(camera => camera.status === 'IN').length}
+        />
+      </div>
     </Jumbotron>
   );
 };

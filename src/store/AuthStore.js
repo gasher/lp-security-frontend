@@ -68,6 +68,18 @@ class AuthStore {
 
     return this.token.remove();
   };
+
+  forgotPassword = async params => {
+    const sessionPromise = userService.forgotPassword(params);
+    this.sessionStatus = fromPromise(sessionPromise);
+    return sessionPromise;
+  };
+
+  changePassword = async params => {
+    const sessionPromise = userService.changePassword(params);
+    this.sessionStatus = fromPromise(sessionPromise);
+    return sessionPromise;
+  };
 }
 
 decorate(AuthStore, {

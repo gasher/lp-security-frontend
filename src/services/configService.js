@@ -2,7 +2,6 @@ import client from './client';
 
 class ConfigService {
   getAll(params) {
-    console.log(params);
     return client.request({
       method: 'get',
       url: '/configs/',

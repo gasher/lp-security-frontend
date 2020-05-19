@@ -17,6 +17,7 @@ import ProtectedRoute from './components/ProtectedRoute';
 import ConfigList from './containers/lists/ConfigList';
 import ConfigForm from './containers/forms/ConfigForm';
 import TriggerList from './containers/lists/TriggerList';
+import ForgotPasswordForm from './containers/forms/ForgotPasswordForm';
 
 const store = createStore(config);
 
@@ -31,6 +32,7 @@ class App extends Component {
               <ProtectedRoute path="/" component={Dashboard} exact />
               <Route path="/login" component={Login} />
               <Route path="/register" component={Register} />
+              <Route path="/forgot-password" component={ForgotPasswordForm} />
               <ProtectedRoute path="/cameras" component={CameraList} />
               <ProtectedRoute path="/camera-form" component={CameraForm} />
               <ProtectedRoute path="/routines" component={RoutineList} />

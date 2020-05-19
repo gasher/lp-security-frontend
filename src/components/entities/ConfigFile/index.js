@@ -24,6 +24,7 @@ const ConfigFile = props => {
 
     return setCopied(true);
   };
+
   return (
     <div>
       <pre id="config-file-content">{props.content}</pre>

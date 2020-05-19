@@ -30,6 +30,29 @@ const fields = (cameras, routines) => [
       label: camera.name,
     })),
   },
+  {
+    name: 'interval',
+    type: 'select',
+    label: 'Interval',
+    options: [
+      {
+        value: 0,
+        label: 'Every time',
+      },
+      {
+        value: 1,
+        label: '10 Minutes',
+      },
+      {
+        value: 1,
+        label: '1 Hour',
+      },
+      {
+        value: 1,
+        label: '1 Day',
+      },
+    ],
+  },
 ];
 
 class ConfigForm extends Component {
@@ -38,6 +61,7 @@ class ConfigForm extends Component {
     name: this.props.name || '',
     camera: this.props.camera || '',
     routine: this.props.routine || '',
+    interval: this.props.interval || 0,
     cameras: [],
     routines: [],
     error: {},
@@ -93,6 +117,7 @@ class ConfigForm extends Component {
           name: this.state.name,
           camera: this.state.camera,
           routine: this.state.routine,
+          interval: this.state.interval,
         });
 
         return closeModal();
@@ -102,6 +127,7 @@ class ConfigForm extends Component {
         name: this.state.name,
         camera: this.state.camera,
         routine: this.state.routine,
+        interval: this.state.interval,
       });
 
       return this.props.history && this.props.history.push('/configs');

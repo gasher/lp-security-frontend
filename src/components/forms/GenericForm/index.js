@@ -1,10 +1,18 @@
 import React from 'react';
 import { Form, Alert, Button } from 'react-bootstrap';
+import ForgotPassword from '../misc/ForgotPassword';
 
 import './styles.css';
 
 const GenericForm = props => {
-  const { entity, handleSubmitForm, handleChange, fields } = props;
+  const {
+    entity,
+    handleSubmitForm,
+    handleChange,
+    fields,
+    isLoginForm,
+    title,
+  } = props;
   const { error } = entity;
 
   const fieldsGenerator = field => {
@@ -63,12 +71,13 @@ const GenericForm = props => {
       <div className="form-wrapper">
         <div className="form-inner">
           <Form onSubmit={event => handleSubmitForm(event)}>
-            <h3>{!entity.id ? 'Add new' : 'Edit'}</h3>
+            <h3>{title ? title : !entity.id ? 'Add new' : 'Edit'}</h3>
             {fields.map(field => fieldsGenerator(field))}
             <Button variant="primary" type="submit">
               Submit
             </Button>
           </Form>
+          {isLoginForm && <ForgotPassword />}
         </div>
       </div>
     </div>

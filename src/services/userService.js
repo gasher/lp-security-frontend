@@ -35,6 +35,29 @@ class UserService {
       },
     });
   }
+
+  forgotPassword(params) {
+    return client.request({
+      method: 'post',
+      url: '/forgot-password/',
+      data: {
+        email: params.email,
+      },
+    });
+  }
+
+  changePassword(params) {
+    return client.request({
+      method: 'post',
+      url: '/change-password/',
+      headers: {
+        Authorization: `Token ${params.token}`,
+      },
+      data: {
+        password: params.password,
+      },
+    });
+  }
 }
 
 export default new UserService();

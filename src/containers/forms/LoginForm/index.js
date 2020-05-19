@@ -60,6 +60,7 @@ class RoutineForm extends Component {
         handleSubmitForm={event => this.handleSubmitForm(event)}
         handleChange={event => this.handleChange(event)}
         entity={this.state}
+        isLoginForm
       />
     );
   }
