@@ -44,11 +44,11 @@ const fields = (cameras, routines) => [
         label: '10 Minutes',
       },
       {
-        value: 1,
+        value: 2,
         label: '1 Hour',
       },
       {
-        value: 1,
+        value: 3,
         label: '1 Day',
       },
     ],
