@@ -97,7 +97,9 @@ const Camera = ({
         show={showConfigJSON}
         handleClose={handleCloseConfigJSON}
         title="Copy this content into your agent's config.json"
-        BodyComponent={<ConfigFile content={generateConfigFile(id)} />}
+        BodyComponent={
+          <ConfigFile content={generateConfigFile(id, ip_address)} />
+        }
       />
       <ModalComponent
         show={showTriggerRoutines}
