@@ -1,5 +1,12 @@
 import React from 'react';
-import { Form, Alert, Button } from 'react-bootstrap';
+import {
+  Form,
+  Alert,
+  Button,
+  OverlayTrigger,
+  Tooltip,
+  Badge,
+} from 'react-bootstrap';
 import ForgotPassword from '../misc/ForgotPassword';
 
 import './styles.css';
@@ -19,7 +26,14 @@ const GenericForm = props => {
     if (['text', 'email', 'password', 'file'].includes(field.type)) {
       return (
         <Form.Group key={`${field.name}-group`}>
-          <Form.Label key={`${field.name}-label`}>{field.label}</Form.Label>
+          <Form.Label key={`${field.name}-label`}>
+            <div>
+              {field.label}
+              <OverlayTrigger overlay={<Tooltip>{field.tooltip}</Tooltip>}>
+                <Badge variant="light">?</Badge>
+              </OverlayTrigger>
+            </div>
+          </Form.Label>
           <Form.Control
             key={`${field.name}-control`}
             type={field.type}
@@ -38,7 +52,14 @@ const GenericForm = props => {
     } else if (['select'].includes(field.type)) {
       return (
         <Form.Group key={`${field.name}-group`}>
-          <Form.Label key={`${field.name}-label`}>{field.label}</Form.Label>
+          <Form.Label key={`${field.name}-label`}>
+            <div>
+              {field.label}
+              <OverlayTrigger overlay={<Tooltip>{field.tooltip}</Tooltip>}>
+                <Badge variant="light">?</Badge>
+              </OverlayTrigger>
+            </div>
+          </Form.Label>
           <Form.Control
             key={`${field.name}-control`}
             as="select"

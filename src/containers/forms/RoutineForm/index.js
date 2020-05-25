@@ -11,11 +11,15 @@ const fields = [
     name: 'name',
     type: 'text',
     label: 'Name',
+    tooltip:
+      'Give a name suggestive name to the routine so it will recognize it later.',
   },
   {
     name: 'file',
     type: 'file',
     label: 'File',
+    tooltip:
+      'Choose the script that will be executed when this routine is triggered.',
   },
 ];
 

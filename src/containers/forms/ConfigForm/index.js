@@ -11,6 +11,8 @@ const fields = (cameras, routines) => [
     name: 'name',
     type: 'text',
     label: 'Name',
+    tooltip:
+      'Give a name suggestive name to the config so it will recognize it later.',
   },
   {
     name: 'routine',
@@ -20,6 +22,7 @@ const fields = (cameras, routines) => [
       value: routine.id,
       label: routine.name,
     })),
+    tooltip: 'Choose which routine will be triggered.',
   },
   {
     name: 'camera',
@@ -29,6 +32,7 @@ const fields = (cameras, routines) => [
       value: camera.id,
       label: camera.name,
     })),
+    tooltip: 'Choose which camera will trigger the routine.',
   },
   {
     name: 'interval',
@@ -52,6 +56,7 @@ const fields = (cameras, routines) => [
         label: '1 Day',
       },
     ],
+    tooltip: 'Choose a time interval between routine triggers.',
   },
 ];
 

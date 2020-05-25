@@ -11,21 +11,27 @@ const fields = [
     name: 'name',
     type: 'text',
     label: 'Name',
+    tooltip:
+      'Give a name suggestive name to the camera so it will recognize it later.',
   },
   {
     name: 'description',
     type: 'text',
     label: 'Description',
+    tooltip:
+      'Give a name suggestive name to the camera so it will recognize it later.',
   },
   {
     name: 'latitude',
     type: 'text',
     label: 'Latitude',
+    tooltip: "Enter the latitude of camera's location.",
   },
   {
     name: 'longitude',
     type: 'text',
     label: 'Longitude',
+    tooltip: "Enter the longitude of camera's location.",
   },
   {
     name: 'status',
@@ -43,11 +49,14 @@ const fields = [
         selected: false,
       },
     ],
+    tooltip: 'Select if this camera is active or inactive.',
   },
   {
     name: 'ip_address',
     type: 'text',
     label: 'Ip address',
+    tooltip:
+      "Enter the ip address of the camera. Don't forget the port if the camera is set-up using port-forwarding and the credentials if needed.",
   },
 ];
 
