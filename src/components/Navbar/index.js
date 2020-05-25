@@ -4,7 +4,6 @@ import { Navbar as NB, Nav, Image } from 'react-bootstrap';
 
 import image from '../../assets/images/logo.png';
 import { withStore } from '../helpers';
-import { autorun } from 'mobx';
 
 class Navbar extends Component {
   async handleSignOut() {

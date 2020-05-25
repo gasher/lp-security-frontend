@@ -8,30 +8,35 @@ class Dashboard extends Component {
     currentUser: null,
     cameras: [],
     routines: [],
+    triggers: [],
   };
 
   async componentDidMount() {
     const {
-      store: { authStore, routineStore, cameraStore },
+      store: { authStore, routineStore, cameraStore, triggerStore },
     } = this.props;
-    const currentUser = await authStore.getCurrentUser();
-    const cameras = await cameraStore.getAll();
-    const routines = await routineStore.getAll();
+    await authStore.getCurrentUser();
+    await cameraStore.getAll();
+    await routineStore.getAll();
+    await triggerStore.getAll();
 
     return this.setState({
-      currentUser,
-      cameras,
-      routines,
+      currentUser: authStore.currentUser,
+      cameras: cameraStore.cameras,
+      routines: routineStore.routines,
+      triggers: triggerStore.triggers,
     });
   }
 
   render() {
-    const { currentUser, cameras, routines } = this.state;
+    const { currentUser, cameras, routines, triggers } = this.state;
+
     return (
       <DashboardComponent
         currentUser={currentUser}
         cameras={cameras}
         routines={routines}
+        triggers={triggers}
       />
     );
   }
