@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router';
-import { Navbar as NB, Nav } from 'react-bootstrap';
+import { Navbar as NB, Nav, Image } from 'react-bootstrap';
 
+import image from '../../assets/images/logo.png';
 import { withStore } from '../helpers';
+import { autorun } from 'mobx';
 
 class Navbar extends Component {
   async handleSignOut() {
@@ -21,7 +23,10 @@ class Navbar extends Component {
 
     return (
       <NB bg="dark" variant="dark">
-        <NB.Brand href="/">LP Security</NB.Brand>
+        <NB.Brand href="/">
+          <Image src={image} style={{ width: 50, heigth: 50 }} />
+          LP Security
+        </NB.Brand>
         {!authStore.isLoggedIn ? (
           <Nav className="mr-auto">
             <Nav.Link href="/login">Login</Nav.Link>
