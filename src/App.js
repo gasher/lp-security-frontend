@@ -18,6 +18,8 @@ import ConfigList from './containers/lists/ConfigList';
 import ConfigForm from './containers/forms/ConfigForm';
 import TriggerList from './containers/lists/TriggerList';
 import ForgotPasswordForm from './containers/forms/ForgotPasswordForm';
+import ErrorBoundary from './containers/pages/ErrorBoundary';
+import InternalError from './containers/pages/InternalError';
 
 const store = createStore(config);
 
@@ -27,20 +29,23 @@ class App extends Component {
       <Provider store={store}>
         <BrowserRouter>
           <div>
-            <Navbar />
-            <Switch>
-              <ProtectedRoute path="/" component={Dashboard} exact />
-              <Route path="/login" component={Login} />
-              <Route path="/register" component={Register} />
-              <Route path="/forgot-password" component={ForgotPasswordForm} />
-              <ProtectedRoute path="/cameras" component={CameraList} />
-              <ProtectedRoute path="/camera-form" component={CameraForm} />
-              <ProtectedRoute path="/routines" component={RoutineList} />
-              <ProtectedRoute path="/routine-form" component={RoutineForm} />
-              <ProtectedRoute path="/configs" component={ConfigList} />
-              <ProtectedRoute path="/config-form" component={ConfigForm} />
-              <ProtectedRoute path="/triggers" component={TriggerList} />
-            </Switch>
+            <ErrorBoundary>
+              <Navbar />
+              <Switch>
+                <ProtectedRoute path="/" component={Dashboard} exact />
+                <Route path="/login" component={Login} />
+                <Route path="/register" component={Register} />
+                <Route path="/forgot-password" component={ForgotPasswordForm} />
+                <ProtectedRoute path="/cameras" component={CameraList} />
+                <ProtectedRoute path="/camera-form" component={CameraForm} />
+                <ProtectedRoute path="/routines" component={RoutineList} />
+                <ProtectedRoute path="/routine-form" component={RoutineForm} />
+                <ProtectedRoute path="/configs" component={ConfigList} />
+                <ProtectedRoute path="/config-form" component={ConfigForm} />
+                <ProtectedRoute path="/triggers" component={TriggerList} />
+                <Route path="/internal-error" component={InternalError} />
+              </Switch>
+            </ErrorBoundary>
           </div>
         </BrowserRouter>
       </Provider>
