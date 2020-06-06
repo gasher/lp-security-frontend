@@ -106,6 +106,24 @@ class CameraForm extends Component {
     }
   }
 
+  async handleDelete() {
+    try {
+      const {
+        store: { cameraStore },
+        closeModal,
+      } = this.props;
+      const { id } = this.state;
+
+      await cameraStore.delete(id);
+
+      return closeModal();
+    } catch (error) {
+      return this.setState({
+        error: djangoErrorResponseParser(error),
+      });
+    }
+  }
+
   render() {
     return (
       <GenericForm
@@ -113,6 +131,7 @@ class CameraForm extends Component {
         handleSubmitForm={event => this.handleSubmitForm(event)}
         handleChange={event => this.handleChange(event)}
         entity={this.state}
+        handleDelete={() => this.handleDelete()}
       />
     );
   }

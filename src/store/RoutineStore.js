@@ -36,6 +36,14 @@ class RoutineStore {
     return this.handleAdd(res.data);
   };
 
+  delete = async id => {
+    const sessionPromise = routineService.delete(id);
+    this.sessionStatus = fromPromise(sessionPromise);
+    const res = await sessionPromise;
+
+    return this.handleDelete(id);
+  };
+
   upload = async params => {
     const sessionPromise = routineService.upload(params);
     this.sessionStatus = fromPromise(sessionPromise);
@@ -48,18 +56,23 @@ class RoutineStore {
   };
 
   handleAdd = data => {
-    return this.setRoutines(this.routines.push(data));
+    return this.setRoutines([...this.routines, data]);
+  };
+
+  handleDelete = id => {
+    return this.setRoutines(this.routines.filter(routine => routine.id !== id));
   };
 
   handleUpdate = data => {
     const routines = this.routines.filter(o => o.id !== data.id);
-    routines.push(data);
 
-    return this.setRoutines(routines);
+    return this.setRoutines([...routines, data]);
   };
 
   setRoutines = routines => {
-    return (this.routines = routines);
+    this.routines = routines;
+
+    return this.routines;
   };
 
   reset = () => {

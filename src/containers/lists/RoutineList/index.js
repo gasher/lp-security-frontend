@@ -23,9 +23,15 @@ class RoutineList extends Component {
   }
 
   mapScriptsToComponents() {
+    const {
+      store: {
+        routineStore: { routines },
+      },
+    } = this.props;
+
     return (
       <Row>
-        {this.state.routines.map(routine => (
+        {routines.map(routine => (
           <Routine key={routine.id} RoutineForm={RoutineForm} {...routine} />
         ))}
       </Row>

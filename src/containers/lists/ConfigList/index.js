@@ -23,9 +23,15 @@ class ConfigList extends Component {
   }
 
   mapScriptsToComponents() {
+    const {
+      store: {
+        configStore: { configs },
+      },
+    } = this.props;
+
     return (
       <Row>
-        {this.state.configs.map(config => (
+        {configs.map(config => (
           <Config key={config.id} ConfigForm={ConfigForm} {...config} />
         ))}
       </Row>

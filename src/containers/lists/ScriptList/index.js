@@ -21,9 +21,13 @@ class ScriptList extends Component {
   }
 
   mapScriptsToComponents() {
-    return this.state.scripts.map(script => (
-      <Script key={script.id} {...script} />
-    ));
+    const {
+      store: {
+        scriptStore: { scripts },
+      },
+    } = this.props;
+
+    return scripts.map(script => <Script key={script.id} {...script} />);
   }
 
   render() {

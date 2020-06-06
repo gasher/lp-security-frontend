@@ -19,6 +19,7 @@ const GenericForm = props => {
     fields,
     isLoginForm,
     title,
+    handleDelete,
   } = props;
   const { error } = entity;
 
@@ -96,7 +97,12 @@ const GenericForm = props => {
             {fields.map(field => fieldsGenerator(field))}
             <Button variant="primary" type="submit">
               Submit
-            </Button>
+            </Button>{' '}
+            {entity.id && (
+              <Button variant="danger" onClick={handleDelete}>
+                Delete
+              </Button>
+            )}
           </Form>
           {isLoginForm && <ForgotPassword />}
         </div>

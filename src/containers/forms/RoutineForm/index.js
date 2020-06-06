@@ -85,6 +85,24 @@ class RoutineForm extends Component {
     }
   }
 
+  async handleDelete() {
+    try {
+      const {
+        store: { routineStore },
+        closeModal,
+      } = this.props;
+      const { id } = this.state;
+
+      await routineStore.delete(id);
+
+      return closeModal();
+    } catch (error) {
+      return this.setState({
+        error: djangoErrorResponseParser(error),
+      });
+    }
+  }
+
   render() {
     return (
       <GenericForm
@@ -92,6 +110,7 @@ class RoutineForm extends Component {
         handleSubmitForm={event => this.handleSubmitForm(event)}
         handleChange={event => this.handleChange(event)}
         entity={this.state}
+        handleDelete={() => this.handleDelete()}
       />
     );
   }

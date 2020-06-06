@@ -37,15 +37,12 @@ class ConfigService {
     });
   }
 
-  delete(params) {
+  delete(id) {
     return client.request({
-      method: 'post',
-      url: `/configs/${params.id}/`,
+      method: 'delete',
+      url: `/configs/${id}/`,
       headers: {
         Authorization: `Token ${localStorage.token}`,
-      },
-      data: {
-        ...params,
       },
     });
   }

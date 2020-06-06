@@ -25,7 +25,9 @@ class TriggerStore {
   };
 
   setTriggers = triggers => {
-    return (this.triggers = triggers);
+    this.triggers = triggers;
+
+    return this.triggers;
   };
 
   reset = () => {

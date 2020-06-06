@@ -36,6 +36,14 @@ class ConfigStore {
     return this.handleAdd(res.data);
   };
 
+  delete = async id => {
+    const sessionPromise = configService.delete(id);
+    this.sessionStatus = fromPromise(sessionPromise);
+    const res = await sessionPromise;
+
+    return this.handleDelete(id);
+  };
+
   upload = async params => {
     const sessionPromise = configService.upload(params);
     this.sessionStatus = fromPromise(sessionPromise);
@@ -44,22 +52,29 @@ class ConfigStore {
   };
 
   handleGet = data => {
-    return this.setConfigs(data.results);
+    this.configs = data.results;
+
+    return this.configs;
   };
 
   handleAdd = data => {
-    return this.setConfigs(this.configs.push(data));
+    return this.setConfigs([...this.configs, data]);
+  };
+
+  handleDelete = id => {
+    return this.setConfigs(this.configs.filter(config => config.id !== id));
   };
 
   handleUpdate = data => {
     const configs = this.configs.filter(o => o.id !== data.id);
-    configs.push(data);
 
-    return this.setConfigs(configs);
+    return this.setConfigs([...configs, data]);
   };
 
   setConfigs = configs => {
-    return (this.configs = configs);
+    this.configs = configs;
+
+    return this.configs;
   };
 
   reset = () => {
@@ -71,7 +86,14 @@ decorate(ConfigStore, {
   configs: observable,
   sessionStatus: observable,
   getAll: action,
+  add: action,
+  update: action,
+  delete: action,
+  update: action,
   handleGet: action,
+  handleDelete: action,
+  handleUpdate: action,
+  handleUpdate: action,
   setConfigs: action,
   reset: action,
 });

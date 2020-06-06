@@ -36,6 +36,14 @@ class CameraStore {
     return this.handleAdd(res.data);
   };
 
+  delete = async id => {
+    const sessionPromise = cameraService.delete(id);
+    this.sessionStatus = fromPromise(sessionPromise);
+    const res = await sessionPromise;
+
+    return this.handleDelete(id);
+  };
+
   executeRoutines = async params => {
     const sessionPromise = cameraService.executeRoutines(params);
     this.sessionStatus = fromPromise(sessionPromise);
@@ -48,30 +56,27 @@ class CameraStore {
   };
 
   handleAdd = data => {
-    return this.setCameras(this.cameras.push(data));
+    return this.setCameras([...this.cameras, data]);
+  };
+
+  handleDelete = id => {
+    return this.setCameras(this.cameras.filter(camera => camera.id !== id));
   };
 
   handleUpdate = data => {
     const cameras = this.cameras.filter(o => o.id !== data.id);
-    cameras.push(data);
 
-    return this.setCameras(cameras);
+    return this.setCameras([...cameras, data]);
   };
 
   setCameras = cameras => {
-    return (this.cameras = cameras);
+    this.cameras = cameras;
+
+    return this.cameras;
   };
 
   reset = () => {
     this.cameras = [];
-  };
-
-  add = async params => {
-    const sessionPromise = cameraService.add(params);
-    this.sessionStatus = fromPromise(sessionPromise);
-    const res = await sessionPromise;
-
-    return this.handleAdd(res.data);
   };
 }
 

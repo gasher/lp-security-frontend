@@ -37,15 +37,12 @@ class CameraService {
     });
   }
 
-  delete(params) {
+  delete(id) {
     return client.request({
-      method: 'post',
-      url: `/cameras/${params.id}/`,
+      method: 'delete',
+      url: `/cameras/${id}/`,
       headers: {
         Authorization: `Token ${localStorage.token}`,
-      },
-      data: {
-        ...params,
       },
     });
   }

@@ -49,7 +49,9 @@ class AuthStore {
   };
 
   setCurrentUser = user => {
-    return (this.currentUser = user);
+    this.currentUser = user;
+
+    return this.currentUser;
   };
 
   handleAuth = data => {

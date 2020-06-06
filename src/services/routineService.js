@@ -52,15 +52,12 @@ class RoutineService {
     });
   }
 
-  delete(params) {
+  delete(id) {
     return client.request({
-      method: 'post',
-      url: `/routines/${params.id}/`,
+      method: 'delete',
+      url: `/routines/${id}/`,
       headers: {
         Authorization: `Token ${localStorage.token}`,
-      },
-      data: {
-        ...params,
       },
     });
   }

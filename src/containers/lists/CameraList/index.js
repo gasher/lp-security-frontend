@@ -23,7 +23,13 @@ class CameraList extends Component {
   }
 
   mapScriptsToComponents() {
-    return this.state.cameras.map(camera => (
+    const {
+      store: {
+        cameraStore: { cameras },
+      },
+    } = this.props;
+
+    return cameras.map(camera => (
       <Camera
         key={camera.id}
         CameraForm={CameraForm}
