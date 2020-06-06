@@ -39,7 +39,7 @@ class RoutineStore {
   delete = async id => {
     const sessionPromise = routineService.delete(id);
     this.sessionStatus = fromPromise(sessionPromise);
-    const res = await sessionPromise;
+    await sessionPromise;
 
     return this.handleDelete(id);
   };

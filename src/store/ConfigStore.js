@@ -39,7 +39,7 @@ class ConfigStore {
   delete = async id => {
     const sessionPromise = configService.delete(id);
     this.sessionStatus = fromPromise(sessionPromise);
-    const res = await sessionPromise;
+    await sessionPromise;
 
     return this.handleDelete(id);
   };
@@ -89,11 +89,11 @@ decorate(ConfigStore, {
   add: action,
   update: action,
   delete: action,
-  update: action,
+  upload: action,
   handleGet: action,
   handleDelete: action,
   handleUpdate: action,
-  handleUpdate: action,
+  handleUpload: action,
   setConfigs: action,
   reset: action,
 });

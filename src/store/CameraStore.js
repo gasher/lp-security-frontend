@@ -39,7 +39,7 @@ class CameraStore {
   delete = async id => {
     const sessionPromise = cameraService.delete(id);
     this.sessionStatus = fromPromise(sessionPromise);
-    const res = await sessionPromise;
+    await sessionPromise;
 
     return this.handleDelete(id);
   };
